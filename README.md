@@ -1,6 +1,6 @@
 # Mängulabor (Game Lab)
 
-A free web page that helps university students build study games with AI. The student describes a topic, picks one of a few predefined game types, tunes a few options, and gets a ready-to-paste prompt for any AI chat. The AI then writes the game as one self-contained HTML file, which the student can play safely in the browser.
+A web page that helps university students build study games with AI. The student describes a topic, picks one of a few predefined game types, tunes a few options, and gets a ready-to-paste prompt for any AI chat. The AI then writes the game as one self-contained HTML file, which the student can play safely in the browser.
 
 **Status:** planning and phase 1 (prompt lab) in progress. The repository holds the plan, requirements and research, the prompt texts in `prompts/`, a checker for generated games in `tools/`, and a first **test version of the web page** that builds the prompt (open `index.html` in a browser, or use GitHub Pages once switched on). The Safe Player is not built yet. Planned hosting is GitHub Pages, and the page will be available in Estonian and English.
 
@@ -26,4 +26,4 @@ Mängulabor on tasuta veebileht, mis aitab üliõpilastel luua tehisintellekti a
 
 ## Licence
 
-No licence file has been added yet. Until one is added, normal copyright applies: the code and texts can be viewed but not reused. An open licence and a credit to Haapsalu College are planned for a later release (requirement F24 in the plan).
+Use of the application and its source code requires a paid licence. See [LICENSE](LICENSE) (draft 0.1, with items in square brackets still to be filled in and a legal review pending). In short: you may view the code and try the application for evaluation; any other use, including hosting it or offering it to students, needs a written licence from the licensor. Games you create with it are yours. A credit to Haapsalu College is planned for the page footer (requirement F24 in the plan).

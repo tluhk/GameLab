@@ -4,7 +4,7 @@ Date of this version: 17 November 2026. Status: plan approved for version 1; no 
 
 ## Summary
 
-Mängulabor is a free web page, in Estonian and English, that turns a university student's topic and a few choices into a ready-to-paste prompt. Any AI chat then writes a study game as one HTML file. The site is static and hosted on GitHub Pages. Learning-science rules and safety rules are built into every prompt, and a "Safe Player" page runs the finished game in a sandbox.
+Mängulabor is a web page, in Estonian and English, that turns a university student's topic and a few choices into a ready-to-paste prompt. Any AI chat then writes a study game as one HTML file. The site is static and hosted on GitHub Pages. Learning-science rules and safety rules are built into every prompt, and a "Safe Player" page runs the finished game in a sandbox.
 
 Similar prompt tools exist, but those found cover quizzes only, are fixed text templates, or run inside a closed platform (see [existing-tools.md](existing-tools.md)). None found combines a game catalogue, Estonian, evidence-based study rules and safe running. The search was mainly in English, so an Estonian tool may exist that was missed.
 
@@ -113,7 +113,7 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 - **F18** A third page language, for example Russian.
 - **F19** Installable offline use as a web app.
 - **F20** A small gallery of teacher-reviewed example games.
-- **F24** The footer credits Haapsalu College, and the repository carries an open licence file, added before a wider release.
+- **F24** The footer credits Haapsalu College, and the page shows a short licence notice that points to the `LICENSE` file (paid licence, see [decisions.md](decisions.md)). The licensor's name and contact must be filled in first.
 
 ### Quality requirements
 
