@@ -100,6 +100,8 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 
 - **F31** Mixing game types: the student can tick one to three of the six version 1 games and combine them in one game (one HTML file, shared progress and scoreboard). Two ways to combine: every level has a round of each game, or each level uses one game, taking turns. At most three, because one file with more games gets large and error-prone. Action-style games (platformer, escape puzzle) are not mixable.
 - **F32** The "More options" control is a large, clearly labelled button that lists what is inside (added after the owner missed it).
+- **F33** Every prompt tells the AI to create the finished game file itself (when its chat can create files or artifacts), never to give file or coding work to the student, and never to ask the student questions first. A code block is only the fallback.
+- **F34** Every prompt asks for a modern, polished look (header band, centred card, rounded corners, progress bar, start screen) with contrast kept first, using a fixed palette for each look.
 - **F30** Feedback and feature requests through GitHub issues. A "Feedback" link opens a prefilled new-issue page in the project's repository (in a new tab), using issue forms with Estonian and English wording. The page sends nothing by itself and shows a public-post warning first; the student needs a GitHub account to submit. See [decisions.md](decisions.md).
 
 ### Should (version 1.1 or 2)

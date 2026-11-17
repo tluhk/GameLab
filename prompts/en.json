@@ -14,7 +14,7 @@
     "source": "SOURCE",
     "mix": "MIXED GAME"
   },
-  "role": "You are an expert teacher and educational game developer. You write correct, simple, accessible code and accurate study content.",
+  "role": "You are an expert teacher, educational game developer and designer. You write correct, simple, accessible code and accurate study content, and you make games that look modern and polished. You do the whole job yourself: do not ask the learner questions first (if something is unclear, choose sensible defaults and mention them in your last line) and never give the learner any coding or file work.",
   "learner": "The learner is {level_text}, studying \"{topic}\". Write everything the learner sees (questions, feedback, buttons, messages) in {game_language}.{standard_lang_note}",
   "levels_text": {
     "intro": "a university student in an introductory course",
@@ -79,16 +79,16 @@
   "content_source_file": "Use ONLY the attached file(s) as the source. Do not add facts that are not in them. If they do not cover enough for the requested number of items, make fewer items and say so.",
   "content_source_none": "Use well-established knowledge of the topic only. If the topic is narrow or recent and you are unsure, say so in your three closing lines instead of guessing.",
   "look_rules": [
-    "Set text colour and background colour explicitly on every element. Never rely on defaults or inherited colours, and never use light-grey text.",
-    "Normal text must have at least 4.5:1 contrast against its background; buttons, borders and large text at least 3:1.",
+    "Make it look modern, calm and polished, like a good mobile app, not like a plain document. Use a soft page background; a header band with the game title; one centred card (maximum width about 720px) with rounded corners (12 to 16px) and a light shadow for the game area; generous spacing; a clear type hierarchy (title, level, question, buttons); a visible progress bar; rounded buttons with hover and pressed states; and a simple start screen. Use small inline SVG or Unicode symbols for icons, never outside icons or images.",
+    "Contrast comes before style. Wherever you set a text colour, set the background colour in the same rule, so no text ever sits on an unexpected background. Normal text needs at least 4.5:1 contrast against its background; buttons, borders and large text at least 3:1. Never use light-grey text, and never put text over gradients or pictures.",
     "Never show right or wrong by colour alone: also add a symbol (✔ or ✘) and a word.",
     "Use this palette: {palette}",
-    "Use a system font stack, a base font size of at least 18px, and large tap targets (at least 44px).{theme_note}"
+    "Use a system font stack, a base font size of at least 18px, and large tap targets (at least 44px). Animations may only be short fades or slides of 200 ms or less, never flashing, and must be switched off when prefers-reduced-motion is set.{theme_note}"
   ],
   "palettes": {
-    "light": "page background #FFFFFF, text #1A1A1A, buttons background #1F4E79 with text #FFFFFF, correct #0B6B2D, wrong #A61B1B, focus outline #000000.",
-    "dark": "page background #121212, text #F2F2F2, buttons background #8AB4F8 with text #0B1A2E, correct #7EE787, wrong #FF9B9B, focus outline #FFFFFF.",
-    "contrast": "page background #000000, text #FFFFFF, buttons background #FFFF00 with text #000000, correct #00FF66, wrong #FF6B6B, focus outline #FFFFFF."
+    "light": "page background #EEF2F7, card background #FFFFFF, header band #1F4E79 with text #FFFFFF, text #1A1A1A, secondary text #3D4852, buttons #1F4E79 with text #FFFFFF, soft highlight #E3EDF7, borders #5B6B7A, correct #0B6B2D, wrong #A61B1B, focus outline #000000.",
+    "dark": "page background #0F1620, card background #1B2533, header band #0B1A2E with text #F2F2F2, text #F2F2F2, secondary text #C9D3DF, buttons #8AB4F8 with text #0B1A2E, soft highlight #26364A, borders #8EA2B8, correct #7EE787, wrong #FF9B9B, focus outline #FFFFFF.",
+    "contrast": "page background #000000, card background #000000 with a 3px #FFFFFF border, header band #FFFF00 with text #000000, text #FFFFFF, buttons #FFFF00 with text #000000, soft highlight #1A1A1A, borders #FFFFFF, correct #00FF66, wrong #FF6B6B, focus outline #FFFFFF."
   },
   "theme_note": " Decorative theme (looks only, never changes the rules above): {theme}.",
   "tech_intro": "Technical and safety rules; these are strict.",
@@ -103,8 +103,9 @@
     "Handle errors without a blank screen: if something fails, show a short plain message."
   ],
   "output": [
-    "Reply with ONE code block containing the complete HTML file, and nothing else inside it.",
-    "After the code block, write exactly three short lines: (1) how to open the game (save as game.html and open it in a browser), (2) which three answers the learner should double-check in a textbook, (3) anything in the content you were unsure about."
+    "Create the finished game yourself. If your chat can create files, artifacts, canvases or downloads, create a file named game.html (or an artifact) that contains the complete game, so the learner can open it directly. Never ask the learner to create, assemble, copy together or edit a file, and never reply with only a plan or instructions.",
+    "Only if you really cannot create a file, reply with ONE code block containing the complete HTML file, and nothing else inside it.",
+    "In both cases, after the game, write exactly three short lines: (1) how to open or play the game, (2) which three answers the learner should double-check in a textbook, (3) anything in the content you were unsure about."
   ],
   "source_heading_pasted": "The learner's notes (use only these):",
   "source_none": "(none)",

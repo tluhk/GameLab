@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Järjestaja: JavaScripti alused</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { background: #FFFFFF; color: #1A1A1A; }
+    body { margin: 0 auto; padding: 1rem; max-width: 60rem; font: 18px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header, main, section, div, p, h1, h2, h3, ol, ul, li, span, strong, label, code, pre, textarea, noscript {
+      background: #FFFFFF; color: #1A1A1A;
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.45rem; }
+    h3 { font-size: 1.15rem; }
+    section { margin: 1.2rem 0; }
+    button { min-height: 44px; min-width: 44px; padding: .5rem .8rem; border: 2px solid #1F4E79;
+      border-radius: .35rem; background: #1F4E79; color: #FFFFFF; font: inherit; cursor: pointer; }
+    button:disabled { border-style: dashed; border-color: #1F4E79; background: #1F4E79; color: #FFFFFF; cursor: default; }
+    button:focus-visible, li:focus-visible, textarea:focus-visible {
+      outline: 3px solid #000000; outline-offset: 3px;
+    }
+    .actions, .move-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin: .8rem 0; }
+    .step-list { padding-left: 2.4rem; }
+    .step-list li { padding: .8rem; margin: .7rem 0; border: 2px solid #1F4E79; border-radius: .4rem; }
+    .step-list li:focus { outline: 3px solid #000000; outline-offset: 3px; }
+    .step-text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .step-text code, .answer-list code { background: #FFFFFF; color: #1A1A1A; font: 1rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .question-title { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .feedback { border: 2px solid #1F4E79; padding: .8rem; margin: .8rem 0; }
+    .correct { color: #0B6B2D; background: #FFFFFF; font-weight: 700; }
+    .wrong { color: #A61B1B; background: #FFFFFF; font-weight: 700; }
+    .feedback.correct-box { border-color: #0B6B2D; }
+    .feedback.wrong-box { border-color: #A61B1B; }
+    .mark { display: block; margin-top: .4rem; }
+    .answer-list li, .progress-list li, .practice-list li { padding: .15rem; overflow-wrap: anywhere; }
+    .progress-list { padding-left: 1.6rem; }
+    #saveNote, #errorMessage { border: 2px solid #1A1A1A; padding: .7rem; }
+    textarea { width: 100%; min-height: 10rem; padding: .7rem; border: 2px solid #1A1A1A;
+      border-radius: .3rem; background: #FFFFFF; color: #1A1A1A; font: inherit; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Järjestaja: JavaScripti alused</h1>
+    <p>Pane sammud õigesse järjekorda. Liiguta neid nuppudega või vali samm ja kasuta üles- või allanooleklahvi. Kontrolli järjekorda. Iga ülesanne saab selgeks pärast kahte õiget vastust eri esituskordadel.</p>
+    <p>Esimese katse järel näed, millised sammud on õigel kohal. Täielikku õiget järjekorda näed pärast teist katset või pärast esimest katset loobudes. Eksida võib piiramatult; ajapiirangut ei ole.</p>
+    <div class="actions"><button type="button" id="resetButton">Lähtesta edasijõudmine</button><button type="button" id="finishButton">Lõpeta mäng</button></div>
+    <p id="saveNote" hidden role="status"></p>
+    <p id="errorMessage" hidden role="alert"></p>
+  </header>
+  <main>
+    <section id="questionArea" aria-live="polite" aria-label="Praegune ülesanne">
+      <h2 id="levelName"></h2>
+      <p id="overallProgress"></p>
+      <h3 id="questionTitle" class="question-title"></h3>
+      <p id="taskProgress"></p>
+      <ol id="steps" class="step-list"></ol>
+      <div class="actions">
+        <button type="button" id="checkButton">Kontrolli</button>
+        <button type="button" id="giveUpButton" disabled>Loobun</button>
+        <button type="button" id="laterButton" hidden>Harjutan hiljem</button>
+        <button type="button" id="nextButton" hidden>Järgmine ülesanne</button>
+      </div>
+      <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+    </section>
+    <section id="summaryArea" hidden aria-label="Mängu tulemus">
+      <h2>Tulemus</h2>
+      <p id="summaryCounts"></p>
+      <h3>Veel harjutamist vajavad ülesanded</h3>
+      <ul id="practiceList" class="practice-list"></ul>
+      <p>Soovitus: mängi mõnel teisel päeval uuesti, et õpitut kinnistada.</p>
+      <div class="actions"><button type="button" id="resumeButton">Jätka harjutamist</button><button type="button" id="copyButton">Kopeeri minu tulemus</button></div>
+      <p id="copyMessage" role="status" aria-live="polite"></p>
+      <div id="copyFallback" hidden><label for="resultText">Kopeeri tulemus sellest tekstiväljast:</label><textarea id="resultText" readonly></textarea></div>
+    </section>
+    <section id="progressArea" aria-label="Ülesannete edasijõudmine">
+      <h2>Ülesannete edasijõudmine</h2>
+      <div id="progressLists"></div>
+    </section>
+  </main>
+  <noscript>See mäng vajab brauseris JavaScripti. Luba JavaScript ja ava fail uuesti.</noscript>
+  <script>
+    "use strict";
+
+    // QUESTIONS: edit here — igas tasemes on kaheksa ülesannet; steps on õiges järjekorras.
+    const QUESTIONS = [
+      [ // 1. tase: meenutamine (JavaScripti kirjakuju)
+        { id: "m1", title: "Järjesta muutuja „tulemus“ loomise neli osa algväärtusega 5.",
+          steps: ["let", "tulemus", "=", "5;"],
+          why: "Muutuja loomisel tuleb let, siis muutuja nimi, võrdusmärk ja algväärtus." },
+        { id: "m2", title: "Järjesta konstandi „piir“ loomise neli osa väärtusega 10.",
+          steps: ["const", "piir", "=", "10;"],
+          why: "Konstandi loomisel tuleb const, siis nimi, võrdusmärk ja algväärtus." },
+        { id: "m3", title: "Järjesta argumentideta funktsiooni tervita osad; funktsioon tagastab sõna „Tere“.",
+          steps: ["function", "tervita()", "{", "return 'Tere';", "}"],
+          why: "Funktsiooni deklaratsioonis eelnevad võtmesõna ja nimi kehale, mille sees on tagastuslause." },
+        { id: "m4", title: "Järjesta tingimuslause osad, mis kirjutab sõna „Jah“ konsooli, kui valmis on tõene.",
+          steps: ["if", "(valmis)", "{", "console.log('Jah');", "}"],
+          why: "if-tingimusele järgneb loogelistes sulgudes keha, mida täidetakse tõese tingimuse korral." },
+        { id: "m5", title: "Järjesta for-tsükli osad, mis kirjutab konsooli arvud 0 ja 1.",
+          steps: ["for", "(let i = 0; i < 2; i++)", "{", "console.log(i);", "}"],
+          why: "for-tsükli päisele järgnev keha käivitatakse väärtustel i = 0 ja i = 1." },
+        { id: "m6", title: "Järjesta massiivi „arvud“ loomise osad, nii et see sisaldaks arve 2 ja 4.",
+          steps: ["const", "arvud", "=", "[2, 4];"],
+          why: "Massiiv määratakse muutujale võrdusmärgiga ning selle elemendid kirjutatakse nurksulgudesse." },
+        { id: "m7", title: "Järjesta objekti „ese“ loomise osad, nii et omaduse „kogus“ väärtus oleks 1.",
+          steps: ["const", "ese", "=", "{ kogus: 1 };"],
+          why: "Objekt määratakse nimele võrdusmärgiga ning omadus ja väärtus kirjutatakse loogeliste sulgude sisse." },
+        { id: "m8", title: "Järjesta viis osa, millega kirjutatakse olemasoleva muutuja „nimi“ väärtus konsooli.",
+          steps: ["console", ".", "log", "(nimi)", ";"],
+          why: "Konsoolimeetodi väljakutses tuleb objekti nime järel punkt, meetodi nimi ja sulgudes argument." }
+      ],
+      [ // 2. tase: mõistmine (programmi täitmise jälgimine)
+        { id: "s1", title: "Muutuja muutmine: järjesta programmi sündmused.\nlet arv = 2;\narv = arv + 3;\nconsole.log(arv);\narv = arv * 2;",
+          steps: ["arv saab algväärtuseks 2.", "arvule liidetakse 3 ja uus väärtus on 5.", "Konsooli kirjutatakse 5.", "arv saab väärtuse 10."],
+          why: "Käsud täidetakse ülalt alla ning konsooli kirjutamise ajal on muutuja väärtus 5." },
+        { id: "s2", title: "Teksti pikkus: järjesta programmi sündmused.\nconst tekst = 'Tere';\nconst pikkus = tekst.length;\nconsole.log(pikkus);\nconsole.log(tekst);",
+          steps: ["tekst saab väärtuse 'Tere'.", "pikkus saab väärtuse 4.", "Konsooli kirjutatakse 4.", "Konsooli kirjutatakse Tere."],
+          why: "Sõnes 'Tere' on neli märki ja konsoolikutsed täidetakse koodis antud järjekorras." },
+        { id: "s3", title: "Tõene tingimus: järjesta programmi sündmused.\nconst arv = 4;\nif (arv > 3) { console.log('Suurem'); }\nconsole.log('Valmis');",
+          steps: ["arv saab väärtuse 4.", "Kontroll 4 > 3 annab tõese tulemuse.", "Konsooli kirjutatakse Suurem.", "Konsooli kirjutatakse Valmis."],
+          why: "Tõese tingimuse korral täidetakse esmalt if-keha ja seejärel järgmine käsk." },
+        { id: "s4", title: "Muutuv tõeväärtus: järjesta programmi sündmused.\nlet valmis = false;\nvalmis = true;\nif (valmis) { console.log('Jah'); }\nconsole.log('Lõpp');",
+          steps: ["valmis saab algväärtuseks false.", "valmis saab väärtuse true.", "Konsooli kirjutatakse Jah.", "Konsooli kirjutatakse Lõpp."],
+          why: "Tingimus kasutab muutuja uut väärtust true ja seepärast täidetakse if-keha." },
+        { id: "s5", title: "Tsükli käigud: järjesta programmi sündmused.\nfor (let i = 0; i < 3; i++) { console.log(i); }",
+          steps: ["i saab väärtuse 0.", "Konsooli kirjutatakse 0.", "i saab väärtuse 1.", "Konsooli kirjutatakse 1.", "i saab väärtuse 2.", "Konsooli kirjutatakse 2."],
+          why: "for-tsükkel väljastab i väärtused 0, 1 ja 2, suurendades i-d iga käigu järel." },
+        { id: "s6", title: "Massiivi muutmine: järjesta programmi sündmused.\nconst arvud = [2, 4];\narvud.push(6);\nconsole.log(arvud.length);\nconsole.log(arvud[2]);",
+          steps: ["arvud sisaldab elemente 2 ja 4.", "Massiivi lõppu lisatakse 6.", "Konsooli kirjutatakse massiivi pikkus 3.", "Konsooli kirjutatakse indeksil 2 olev arv 6."],
+          why: "push lisab kolmanda elemendi ning nullist algava indeksiga 2 leitakse arv 6." },
+        { id: "s7", title: "Funktsiooni väljakutse: järjesta väljakutse sündmused.\nfunction liida(a, b) { return a + b; }\nconst tulemus = liida(2, 3);\nconsole.log(tulemus);",
+          steps: ["Kutsutakse välja liida(2, 3).", "Parameetrid a ja b saavad väärtused 2 ja 3.", "Funktsioon tagastab 5.", "Konsooli kirjutatakse 5."],
+          why: "Funktsioon liidab väljakutsel saadud argumendid ja tagastatud tulemus väljastatakse." },
+        { id: "s8", title: "Objekti omadus: järjesta programmi sündmused.\nconst ese = { kogus: 1 };\nese.kogus += 2;\nconsole.log(ese.kogus);\nese.kogus = 0;",
+          steps: ["ese.kogus saab algväärtuseks 1.", "ese.kogus suureneb väärtuseni 3.", "Konsooli kirjutatakse 3.", "ese.kogus saab väärtuse 0."],
+          why: "Omadust suurendatakse enne selle väljastamist ja nullitakse alles pärast seda." }
+      ],
+      [ // 3. tase: rakendamine (vajalikku tulemust andva koodi koostamine)
+        { id: "r1", title: "Ostukorv: ühe kauba hind on 8; arvuta kahe kauba hind, lisa 3 ja väljasta kogusumma. Järjesta koodiread.",
+          steps: ["const hind = 8;", "const kaheKaubaHind = hind * 2;", "const koosLisaga = kaheKaubaHind + 3;", "console.log(koosLisaga);"],
+          why: "Iga järgmine arvutus vajab eelmises reas saadud väärtust enne summa väljastamist." },
+        { id: "r2", title: "Ülesannete loend: loo tühi loend, lisa ülesanne „loe“ ja väljasta uue loendi pikkus. Järjesta koodiread.",
+          steps: ["const nimekiri = [];", "nimekiri.push('loe');", "const kogus = nimekiri.length;", "console.log(kogus);"],
+          why: "Loend tuleb luua enne lisamist ja selle pikkus tuleb lugeda pärast lisamist." },
+        { id: "r3", title: "Teksti pikkus: kontrolli, kas näitetekst „õppur“ mahub kaheksa märgi piiridesse, ja väljasta tõeväärtus. Järjesta koodiread.",
+          steps: ["const kasutajanimi = 'õppur';", "const pikkus = kasutajanimi.length;", "const sobib = pikkus <= 8;", "console.log(sobib);"],
+          why: "Pikkust saab mõõta alles pärast teksti loomist ning võrdluse tulemus väljastatakse viimasena." },
+        { id: "r4", title: "Õpitulemus: kolme punktiga on kahe punkti eesmärk täidetud; koosta ja väljasta sellele vastav teade. Järjesta koodiread.",
+          steps: ["const punktid = 3;", "const edukas = punktid >= 2;", "const teade = edukas ? 'Eesmärk täidetud' : 'Harjuta veel';", "console.log(teade);"],
+          why: "Teade valitakse alles pärast punktide võrdlemist eesmärgiga ja seejärel väljastatakse." },
+        { id: "r5", title: "Laoseis: alusta kahe esemega, lisa üks ese, kontrolli saadavust ja väljasta tõeväärtus. Järjesta koodiread.",
+          steps: ["const laoseis = { kogus: 2 };", "laoseis.kogus += 1;", "const saadaval = laoseis.kogus > 0;", "console.log(saadaval);"],
+          why: "Laoseis tuleb luua ja uuendada enne uue koguse põhjal tehtavat kontrolli." },
+        { id: "r6", title: "Failinimi: kontrolli suur- ja väiketähtedest sõltumata, kas MANG.JS lõpeb osaga .js, ning väljasta tõeväärtus. Järjesta koodiread.",
+          steps: ["const failinimi = 'MANG.JS';", "const vaiketahtega = failinimi.toLowerCase();", "const onJs = vaiketahtega.endsWith('.js');", "console.log(onJs);"],
+          why: "Failinimi tuleb enne lõpu kontrollimist väiketähtedeks muuta, et suur- ja väiketähed ei mõjutaks tulemust." },
+        { id: "r7", title: "Harjutuse vastused: massiivis on true, false ja true; loenda tõesed vastused, kontrolli vähemalt kahte ja väljasta tõeväärtus. Järjesta koodiread.",
+          steps: ["const vastused = [true, false, true];", "const oigeid = vastused.filter(vastus => vastus).length;", "const piisab = oigeid >= 2;", "console.log(piisab);"],
+          why: "Tõesed vastused loendatakse massiivist enne nende arvu võrdlemist kahega." },
+        { id: "r8", title: "Tekstist arvuks: näitetekstis '12' on arv; teisenda see arvuks, kahekordista ja väljasta tulemus. Järjesta koodiread.",
+          steps: ["const sisestus = '12';", "const arv = Number(sisestus);", "const kahekordne = arv * 2;", "console.log(kahekordne);"],
+          why: "Tekst teisendatakse arvuks enne sellega arvutamist ja tulemus väljastatakse viimasena." }
+      ]
+    ];
+
+    function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+    const STORAGE_KEY = "mangulabor:sequence:javascript-alused:v1";
+    const memoryData = {};
+    let storageFailed = false;
+    function saveData(key, value) {
+      memoryData[key] = value;
+      try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+      catch (error) { storageFailed = true; return false; }
+    }
+    function loadData(key, defaultValue) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw !== null) { const value = JSON.parse(raw); memoryData[key] = value; return value; }
+      } catch (error) { storageFailed = true; }
+      return Object.prototype.hasOwnProperty.call(memoryData, key) ? memoryData[key] : defaultValue;
+    }
+
+    const LEVELS = ["Meenutamine", "Mõistmine", "Rakendamine"];
+    const allQuestions = QUESTIONS.flat();
+    const byId = new Map(allQuestions.map(question => [question.id, question]));
+    const el = id => document.getElementById(id);
+    let scores = {};
+    let queue = [];
+    let activeLevel = -1;
+    let current = null;
+    let order = [];
+    let attempts = 0;
+    let marks = null;
+    let locked = false;
+    let correctAnswers = 0;
+    let attemptsTotal = 0;
+    let answeredCorrectly = new Set();
+
+    function textNode(tag, text, className) {
+      const node = document.createElement(tag);
+      node.textContent = text;
+      if (className) node.className = className;
+      return node;
+    }
+    function showError() {
+      el("errorMessage").textContent = "Mängus tekkis viga. Proovi lehte uuendada; salvestatud edasijõudmine võib alles olla.";
+      el("errorMessage").hidden = false;
+    }
+    function safely(action) { try { action(); } catch (error) { showError(); } }
+    function storageMessage() {
+      if (storageFailed) {
+        el("saveNote").textContent = "Brauseri salvestus pole saadaval. Edasijõudmine säilib ainult seni, kuni see leht on avatud.";
+        el("saveNote").hidden = false;
+      }
+    }
+    function learnedCount() { return allQuestions.filter(q => scores[q.id] === 2).length; }
+    function shuffledSteps(steps) {
+      const mixed = shuffle(steps);
+      if (mixed.every((step, index) => step === steps[index])) {
+        [mixed[0], mixed[1]] = [mixed[1], mixed[0]];
+      }
+      return mixed;
+    }
+    function updateProgress() {
+      el("overallProgress").textContent = `Selgeks õpitud: ${learnedCount()}/${allQuestions.length} ülesannet.`;
+      const panel = el("progressLists");
+      panel.replaceChildren();
+      QUESTIONS.forEach((level, index) => {
+        panel.append(textNode("h3", `${index + 1}. tase: ${LEVELS[index]}`));
+        const list = document.createElement("ol");
+        list.className = "progress-list";
+        level.forEach(question => {
+          const points = scores[question.id] || 0;
+          const label = question.title.split("\n")[0];
+          list.append(textNode("li", `${label} — ${points}/2 õiget; ${points === 2 ? "✔ Selgeks õpitud" : "Harjutamisel"}.`));
+        });
+        panel.append(list);
+      });
+    }
+    function renderSteps() {
+      const list = el("steps");
+      list.replaceChildren();
+      order.forEach((step, index) => {
+        const item = document.createElement("li");
+        item.tabIndex = 0;
+        item.dataset.index = String(index);
+        item.setAttribute("aria-label", `Samm ${index + 1}: ${step}`);
+        const p = document.createElement("p");
+        p.className = "step-text";
+        p.append(textNode(current.id[0] === "s" ? "span" : "code", step));
+        item.append(p);
+        if (marks !== null) {
+          item.append(textNode("span", marks[index] ? "✔ Õigel kohal" : "✘ Valel kohal", marks[index] ? "mark correct" : "mark wrong"));
+        }
+        const controls = document.createElement("div");
+        controls.className = "move-buttons";
+        for (const [direction, label] of [[-1, "Liiguta üles"], [1, "Liiguta alla"]]) {
+          const button = textNode("button", label);
+          button.type = "button";
+          button.disabled = locked || index + direction < 0 || index + direction >= order.length;
+          button.addEventListener("click", () => safely(() => move(index, direction)));
+          controls.append(button);
+        }
+        item.append(controls);
+        list.append(item);
+      });
+    }
+    function move(index, direction) {
+      const other = index + direction;
+      if (locked || other < 0 || other >= order.length) return;
+      [order[index], order[other]] = [order[other], order[index]];
+      marks = null;
+      renderSteps();
+      el("steps").children[other].focus();
+    }
+    function clearFeedback() {
+      el("feedback").replaceChildren();
+      el("feedback").hidden = true;
+      el("feedback").className = "feedback";
+    }
+    function showFeedback(isCorrect, reveal, gaveUp = false) {
+      const box = el("feedback");
+      box.replaceChildren();
+      box.className = `feedback ${isCorrect ? "correct-box" : "wrong-box"}`;
+      box.append(textNode("p", gaveUp ? "✘ Loobusid sellest katsest." : isCorrect ? "✔ Õige järjekord!" : "✘ Järjekord ei ole veel õige.", isCorrect ? "correct" : "wrong"));
+      box.append(textNode("p", current.why));
+      if (reveal) {
+        box.append(textNode("p", "Õige vastus: sammud õiges järjekorras:"));
+        const answer = document.createElement("ol");
+        answer.className = "answer-list";
+        current.steps.forEach(step => {
+          const li = document.createElement("li");
+          li.append(textNode(current.id[0] === "s" ? "span" : "code", step));
+          answer.append(li);
+        });
+        box.append(answer);
+      } else {
+        box.append(textNode("p", isCorrect ? "Õige vastus: sinu järjestus on õige." : "Õige vastus avaneb pärast teist katset või loobumist."));
+      }
+      box.hidden = false;
+    }
+    function presentQuestion(question) {
+      current = question;
+      attempts = 0;
+      marks = null;
+      locked = false;
+      order = shuffledSteps(question.steps);
+      el("questionArea").hidden = false;
+      el("summaryArea").hidden = true;
+      el("levelName").textContent = `${activeLevel + 1}. tase / 3: ${LEVELS[activeLevel]}`;
+      el("questionTitle").textContent = question.title;
+      el("taskProgress").textContent = `See ülesanne: ${scores[question.id] || 0}/2 õiget. Katseid sellel esituskorral: 0/2.`;
+      el("checkButton").disabled = false;
+      el("giveUpButton").disabled = true;
+      el("laterButton").hidden = true;
+      el("nextButton").hidden = true;
+      clearFeedback();
+      renderSteps();
+      updateProgress();
+      el("questionTitle").setAttribute("tabindex", "-1");
+      el("questionTitle").focus();
+    }
+    function fillQueue() {
+      activeLevel = QUESTIONS.findIndex(level => level.some(q => scores[q.id] < 2));
+      if (activeLevel < 0) return false;
+      queue = shuffle(QUESTIONS[activeLevel].filter(q => scores[q.id] < 2).map(q => q.id));
+      return true;
+    }
+    function nextQuestion() {
+      if (!queue.length && !fillQueue()) { showSummary(); return; }
+      presentQuestion(byId.get(queue.shift()));
+    }
+    function finishAttempt(isCorrect, reveal, gaveUp = false) {
+      showFeedback(isCorrect, reveal, gaveUp);
+      if (isCorrect) {
+        scores[current.id] = Math.min(2, scores[current.id] + 1);
+        correctAnswers++;
+        answeredCorrectly.add(current.id);
+        saveData(STORAGE_KEY, scores);
+        storageMessage();
+        updateProgress();
+      }
+      el("taskProgress").textContent = `See ülesanne: ${scores[current.id]}/2 õiget. Katseid sellel esituskorral: ${attempts}/2.`;
+      if (isCorrect || reveal) {
+        locked = true;
+        el("checkButton").disabled = true;
+        el("giveUpButton").disabled = true;
+        el("laterButton").hidden = true;
+        el("nextButton").hidden = false;
+        renderSteps();
+        el("nextButton").focus();
+      } else {
+        el("giveUpButton").disabled = false;
+        el("laterButton").hidden = false;
+      }
+    }
+    function checkOrder() {
+      if (locked || !current) return;
+      attempts++;
+      attemptsTotal++;
+      marks = order.map((step, index) => step === current.steps[index]);
+      const correct = marks.every(Boolean);
+      renderSteps();
+      finishAttempt(correct, attempts >= 2);
+    }
+    function giveUp() {
+      if (!current || attempts < 1 || locked) return;
+      marks = order.map((step, index) => step === current.steps[index]);
+      renderSteps();
+      finishAttempt(false, true, true);
+    }
+    function continueLater() {
+      if (!current || attempts < 1 || locked) return;
+      requeueAndContinue();
+    }
+    function requeueAndContinue() {
+      if (current && scores[current.id] < 2) queue.push(current.id);
+      nextQuestion();
+    }
+    function showSummary() {
+      el("questionArea").hidden = true;
+      el("summaryArea").hidden = false;
+      const pending = allQuestions.filter(q => scores[q.id] < 2);
+      el("summaryCounts").textContent = `Selles mängukorras vastasid õigesti ${answeredCorrectly.size}/${allQuestions.length} ülesandele (${correctAnswers} õiget vastust ${attemptsTotal} kontrollist). Selgeks õpitud: ${learnedCount()}/${allQuestions.length} ülesannet.`;
+      const list = el("practiceList");
+      list.replaceChildren();
+      if (!pending.length) list.append(textNode("li", "Kõik ülesanded on selgeks õpitud."));
+      else pending.forEach(question => list.append(textNode("li", `${question.title.split("\n")[0]} — ${scores[question.id]}/2 õiget.`)));
+      el("copyMessage").textContent = "";
+      el("copyFallback").hidden = true;
+      updateProgress();
+      el("summaryArea").querySelector("h2").setAttribute("tabindex", "-1");
+      el("summaryArea").querySelector("h2").focus();
+    }
+    function resultText() {
+      return `Mäng: Järjestaja\nTeema: JavaScripti alused\nTulemus: ${answeredCorrectly.size}/${allQuestions.length} ülesandele vastati õigesti; ${learnedCount()}/${allQuestions.length} ülesannet selgeks õpitud\nKuupäev: ${new Date().toLocaleDateString("et-EE", { day: "2-digit", month: "2-digit", year: "numeric" })}`;
+    }
+    async function copyResult() {
+      const value = resultText();
+      try {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("Lõikelaud pole saadaval");
+        await navigator.clipboard.writeText(value);
+        el("copyMessage").textContent = "Tulemus kopeeritud.";
+        el("copyFallback").hidden = true;
+      } catch (error) {
+        el("copyMessage").textContent = "Automaatne kopeerimine ei õnnestunud. Vali ja kopeeri allolev tekst.";
+        el("resultText").value = value;
+        el("copyFallback").hidden = false;
+        el("resultText").focus();
+        el("resultText").select();
+      }
+    }
+    function resetProgress() {
+      scores = Object.fromEntries(allQuestions.map(q => [q.id, 0]));
+      saveData(STORAGE_KEY, scores);
+      storageMessage();
+      correctAnswers = 0;
+      attemptsTotal = 0;
+      answeredCorrectly = new Set();
+      queue = [];
+      activeLevel = -1;
+      current = null;
+      el("errorMessage").hidden = true;
+      nextQuestion();
+    }
+    function init() {
+      if (QUESTIONS.length !== 3 || QUESTIONS.some(level => level.length !== 8) || byId.size !== 24 ||
+          allQuestions.some(q => q.steps.length < 4 || q.steps.length > 7 || new Set(q.steps).size !== q.steps.length)) {
+        throw new Error("Ülesannete andmed on vigased");
+      }
+      const stored = loadData(STORAGE_KEY, {});
+      scores = Object.fromEntries(allQuestions.map(q => [q.id, stored && Number.isInteger(stored[q.id]) && stored[q.id] >= 0 && stored[q.id] <= 2 ? stored[q.id] : 0]));
+      storageMessage();
+      el("steps").addEventListener("keydown", event => {
+        if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+        const item = event.target.closest("li[data-index]");
+        if (!item) return;
+        event.preventDefault();
+        safely(() => move(Number(item.dataset.index), event.key === "ArrowUp" ? -1 : 1));
+      });
+      el("checkButton").addEventListener("click", () => safely(checkOrder));
+      el("giveUpButton").addEventListener("click", () => safely(giveUp));
+      el("laterButton").addEventListener("click", () => safely(continueLater));
+      el("nextButton").addEventListener("click", () => safely(requeueAndContinue));
+      el("finishButton").addEventListener("click", () => safely(showSummary));
+      el("resumeButton").addEventListener("click", () => safely(() => {
+        if (!queue.length) fillQueue();
+        if (activeLevel < 0) showSummary(); else nextQuestion();
+      }));
+      el("resetButton").addEventListener("click", () => safely(resetProgress));
+      el("copyButton").addEventListener("click", () => { copyResult().catch(showError); });
+      if (fillQueue()) nextQuestion(); else showSummary();
+    }
+    safely(init);
+  </script>
+</body>
+</html>
