@@ -1,0 +1,24 @@
+name: Something is wrong / Midagi on valesti
+description: A game does not work, a question is wrong, or text is hard to read. / Mäng ei tööta, küsimus on vale või tekst on raskesti loetav.
+title: "[Problem] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not write your real name, contact details or anything confidential. / See sissekanne on avalik. Ära kirjuta oma pärisnime, kontaktandmeid ega konfidentsiaalset infot.
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong? / Mis on valesti?
+      description: For example the right answer is always in the same place, low contrast, a wrong fact, a blank screen. / Näiteks õige vastus on alati samas kohas, madal kontrast, vale fakt, tühi ekraan.
+    validations:
+      required: true
+  - type: input
+    id: game
+    attributes:
+      label: Game type (optional) / Mängutüüp (valikuline)
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device (optional) / Brauser ja seade (valikuline)

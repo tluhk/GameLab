@@ -1,0 +1,19 @@
+name: Feature request / Ettepanek uue funktsiooni kohta
+description: Suggest a game type, option or improvement. / Paku välja mängutüüp, valik või parendus.
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not write your real name, contact details or anything confidential. / See sissekanne on avalik. Ära kirjuta oma pärisnime, kontaktandmeid ega konfidentsiaalset infot.
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to see? / Mida sooviksid näha?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: How would it help your studying? / Kuidas see sinu õppimist aitaks?
