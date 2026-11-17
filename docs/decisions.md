@@ -38,6 +38,8 @@ The owner pasted the first prompt into an AI chat and sent back the result (save
 - **It looks too plain**, like a first prototype. Cause: the look rules said to set text and background colours on every element and gave a flat palette, so the AI made a white page with boxes. The look rules now ask for a modern, polished design (header band, centred card, rounded corners, shadow, progress bar, start screen, hover states) and give richer palettes, while keeping contrast first. These rules are untested until the prompt is run again.
 - **The AI should create the file itself**, not hand the work to the student. The prompt now tells the AI to create a game.html file or artifact itself when its chat can, never to ask the learner to create, assemble or edit files, and to give a code block only if it truly cannot make a file. It also tells the AI not to ask the learner questions first. Whether a given chat obeys this depends on the chat; AIs that cannot make files will still give a code block.
 
+**Trial run 2** (new wording, same options): the result is clearly more modern (start screen, header band, card layout, progress bar, task chips, rounded buttons), passes all automatic checks, works on a phone-width screen, and four tasks were solved correctly in a headless browser. This is one run in one AI chat, so it shows the change can work, not that it works reliably.
+
 ## Mixing game types and the "More options" button
 
 On 17 November 2026 the owner asked for two changes: students should be able to mix game types (for example flashcards and memory match), and the "More options" control was hard to find.
