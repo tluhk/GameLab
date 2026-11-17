@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Quiz</title>
+<style>body{background:#fff;color:#1A1A1A;font:18px system-ui;margin:16px}
+button{background:#1F4E79;color:#fff;border:2px solid #000;font:18px system-ui;min-height:44px;margin:4px 0;display:block;width:100%;text-align:left;padding:8px}
+button:focus{outline:3px solid #000} .ok{color:#0B6B2D} .no{color:#A61B1B}</style></head><body>
+<h1>Photosynthesis quiz</h1><div id="app"></div>
+<script>
+// QUESTIONS: edit here
+const QUESTIONS = [
+    {id:"q1", question:"Which gas do plants take in for photosynthesis?", correct:"Carbon dioxide", wrong:["Oxygen", "Nitrogen", "Hydrogen"], why:"Plants use CO2 as the carbon source."},
+    {id:"q2", question:"Where does photosynthesis mainly take place in a cell?", correct:"Chloroplast", wrong:["Mitochondrion", "Nucleus", "Ribosome"], why:"Chloroplasts contain chlorophyll."},
+    {id:"q3", question:"Which pigment absorbs most of the light used in photosynthesis?", correct:"Chlorophyll", wrong:["Haemoglobin", "Melanin", "Keratin"], why:"Chlorophyll absorbs red and blue light."},
+    {id:"q4", question:"Which product of photosynthesis is released into the air?", correct:"Oxygen", wrong:["Carbon dioxide", "Methane", "Nitrogen"], why:"Oxygen comes from splitting water."},
+    {id:"q5", question:"What sugar is made in photosynthesis?", correct:"Glucose", wrong:["Lactose", "Sucrose only", "Maltose"], why:"Glucose is built in the Calvin cycle."},
+    {id:"q6", question:"What provides the energy for photosynthesis?", correct:"Light", wrong:["Heat from soil", "Wind", "Gravity"], why:"Light drives the light reactions."},
+    {id:"q7", question:"Which process in the leaf lets gases in and out?", correct:"Stomata", wrong:["Xylem flow", "Roots", "Petals"], why:"Stomata are small pores."},
+    {id:"q8", question:"What is the source of the oxygen released?", correct:"Water", wrong:["Glucose", "Carbon dioxide", "Chlorophyll"], why:"Water is split in the light reactions."}
+];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function saveData(k,v){try{localStorage.setItem('mangulabor:quiz:'+k,JSON.stringify(v))}catch(e){mem[k]=v}}
+const mem={};
+fetch('https://example.com/log');
+const app=document.getElementById('app'); let order,pos=0;
+function start(){app.innerHTML='<button id="s">Start</button>';document.getElementById('s').onclick=()=>{order=shuffle(QUESTIONS);pos=0;show()}}
+function show(){ if(pos>=order.length){app.innerHTML='<p>Done!</p>';return}
+ const it=order[pos]; const opts=shuffle([it.correct].concat(it.wrong));
+ app.innerHTML='<p role="status" aria-live="polite" id="fb"></p><p>'+it.question+'</p>';
+ opts.forEach(o=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>answer(it,o,opts);app.appendChild(b)});
+}
+function answer(it,o,opts){ const ok=o===it.correct; document.getElementById('fb').innerHTML=ok?'<span class="ok">✔ Correct.</span> '+it.why:'<span class="no">✘ Wrong.</span> Right: '+it.correct+'. '+it.why;
+ const n=document.createElement('button');n.textContent='Next';n.onclick=()=>{pos++;show()};app.appendChild(n);}
+start();
+</script></body></html>

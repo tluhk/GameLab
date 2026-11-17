@@ -1,0 +1,178 @@
+{
+  "lang": "en",
+  "headings": {
+    "role": "ROLE",
+    "learner": "LEARNER",
+    "game": "GAME",
+    "progress": "PROGRESS AND SCOREBOARD",
+    "learning": "LEARNING RULES",
+    "content": "CONTENT RULES",
+    "gamerules": "RULES FOR THIS GAME",
+    "look": "LOOK",
+    "tech": "TECHNICAL AND SAFETY RULES",
+    "output": "OUTPUT",
+    "source": "SOURCE"
+  },
+  "role": "You are an expert teacher and educational game developer. You write correct, simple, accessible code and accurate study content.",
+  "learner": "The learner is {level_text}, studying \"{topic}\". Write everything the learner sees (questions, feedback, buttons, messages) in {game_language}.{standard_lang_note}",
+  "levels_text": {
+    "intro": "a university student in an introductory course",
+    "inter": "a university student in an intermediate course",
+    "adv": "a university student in an advanced course",
+    "prof": "an adult in professional or continuing training"
+  },
+  "standard_lang_note": {
+    "et": " Use standard Estonian with correct case endings, and keep wording plain and natural."
+  },
+  "game_line": "Game type: {game_name}. Number of levels: {levels}. Items per level: {items}. Starting difficulty: {difficulty_text}.",
+  "difficulty_text": {
+    "easy": "easy",
+    "medium": "medium",
+    "hard": "hard",
+    "adaptive": "adaptive (start at medium; make later items easier after mistakes and harder after streaks of correct answers)"
+  },
+  "progress_on": "Save progress on this device: the game remembers which items are mastered and offers a clearly labelled \"Reset progress\" button.",
+  "progress_off": "Do not save progress between visits.",
+  "scoreboard_on": "Include a scoreboard of the ten best results on this device. At the end of a run, offer an optional nickname field (at most 20 characters, with the note \"Use a nickname, not your real name. Stays on this device.\"). The nickname may stay empty.",
+  "scoreboard_off": "Do not include a scoreboard.",
+  "ladder": [
+    "remember (recall a fact, term or definition)",
+    "understand (recognise meaning, explain or give an example)",
+    "apply (use the idea in a new, concrete situation)",
+    "analyse (compare, find causes, tell apart similar ideas)",
+    "evaluate (judge which option is best and why)"
+  ],
+  "learning_intro": "Follow these study rules; they come from research on how people learn best.",
+  "learning": [
+    "The learner must answer before the answer is shown. Never show answers up front.",
+    "{replay_rule}",
+    "{mastery_rule}",
+    "{level_rule}",
+    "{feedback_rule}",
+    "{hints_rule}",
+    "At the end, show how many items were answered correctly and which items need more practice, and suggest playing again on another day.{summary_rule}"
+  ],
+  "replay_on": "Items answered wrongly must come back later in the same game.",
+  "replay_off": "Items answered wrongly do not need to come back in the same game.",
+  "mastery_on": "An item counts as learned only after it has been answered correctly twice (not necessarily in a row). Show per-item progress.",
+  "mastery_off": "An item counts as learned after one correct answer.",
+  "feedback_short": "After each answer show only whether it was right or wrong, and the right answer if it was wrong.",
+  "feedback_explain": "After each answer show whether it was right or wrong, the right answer, and a one-line explanation of why. Show the feedback next to the question, not on a separate screen.",
+  "hints_on": "Offer one optional hint per item, shown on request; an item answered correctly after a hint counts as half a correct answer.",
+  "hints_off": "Do not offer hints.",
+  "summary_on": " Include a button \"Copy my result\" that copies a short plain-text summary (game, topic, score, date) to the clipboard, with a visible fallback text box if copying is blocked.",
+  "summary_off": "",
+  "time_off": "There is no timer and no time pressure.",
+  "time_relaxed": "Use a generous optional timer per question (about 30 seconds); running out of time only marks the item as missed and never ends the game.",
+  "time_tight": "Use a visible timer of about 10 seconds per question; running out of time marks the item as missed. The timer must not hide or move the question.",
+  "lives_on": "The learner has three lives; a wrong answer costs one. When lives run out, show the summary and offer to retry; never delete saved progress.",
+  "lives_off": "There are no lives; mistakes never end the game.",
+  "content_intro": "Content must be correct and checkable.",
+  "content": [
+    "Put all questions and answers in ONE clearly labelled data block at the top of the script, in plain readable form, so a non-programmer can read and correct it. Mark it with a comment: \"QUESTIONS: edit here\".",
+    "Give every item a unique id and a one-line explanation of why the answer is right.",
+    "Do not invent facts, names, numbers, quotations or references. If you are not sure about something, leave it out.",
+    "Every question must have exactly one clearly correct answer. Avoid trick questions, and avoid \"all of the above\" and \"none of the above\"."
+  ],
+  "content_source_pasted": "Use ONLY the notes in the SOURCE section below. Do not add facts that are not in them. If the notes do not cover enough for the requested number of items, make fewer items and say so.",
+  "content_source_file": "Use ONLY the attached file(s) as the source. Do not add facts that are not in them. If they do not cover enough for the requested number of items, make fewer items and say so.",
+  "content_source_none": "Use well-established knowledge of the topic only. If the topic is narrow or recent and you are unsure, say so in your three closing lines instead of guessing.",
+  "look_rules": [
+    "Set text colour and background colour explicitly on every element. Never rely on defaults or inherited colours, and never use light-grey text.",
+    "Normal text must have at least 4.5:1 contrast against its background; buttons, borders and large text at least 3:1.",
+    "Never show right or wrong by colour alone: also add a symbol (✔ or ✘) and a word.",
+    "Use this palette: {palette}",
+    "Use a system font stack, a base font size of at least 18px, and large tap targets (at least 44px).{theme_note}"
+  ],
+  "palettes": {
+    "light": "page background #FFFFFF, text #1A1A1A, buttons background #1F4E79 with text #FFFFFF, correct #0B6B2D, wrong #A61B1B, focus outline #000000.",
+    "dark": "page background #121212, text #F2F2F2, buttons background #8AB4F8 with text #0B1A2E, correct #7EE787, wrong #FF9B9B, focus outline #FFFFFF.",
+    "contrast": "page background #000000, text #FFFFFF, buttons background #FFFF00 with text #000000, correct #00FF66, wrong #FF6B6B, focus outline #FFFFFF."
+  },
+  "theme_note": " Decorative theme (looks only, never changes the rules above): {theme}.",
+  "tech_intro": "Technical and safety rules; these are strict.",
+  "tech": [
+    "Produce ONE self-contained HTML file with inline CSS and JavaScript. No links, libraries, fonts, images, icons or scripts from outside. No external addresses of any kind.",
+    "No network calls (no fetch, XMLHttpRequest, WebSocket, beacons), no eval or similar, no pop-ups or new windows, no downloads, no forms that submit, no cookies.",
+    "Never ask for a real name, email address, password or any personal data.",
+    "Save and load data only through one small helper built from these two functions, with try/catch and a fallback to memory if browser storage is blocked (it may be blocked): saveData(key, value) and loadData(key, defaultValue). Use the key prefix \"mangulabor:{game_id}:\".",
+    "Whenever answer options, cards or items are shown in a changing order, shuffle them in code every time they are shown, using exactly this function: function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;} Do not shuffle with sort() and Math.random(). The correct answer must not sit in a fixed position, and the data block must not depend on the order of options.",
+    "Everything must work with keyboard (Tab, Enter, Space, arrow keys) and touch, not only a mouse. Every control needs a visible focus outline and a text label. Mark the question area with role=\"status\" or aria-live so screen readers announce feedback.",
+    "No sound. No flashing or fast animation.",
+    "Handle errors without a blank screen: if something fails, show a short plain message."
+  ],
+  "output": [
+    "Reply with ONE code block containing the complete HTML file, and nothing else inside it.",
+    "After the code block, write exactly three short lines: (1) how to open the game (save as game.html and open it in a browser), (2) which three answers the learner should double-check in a textbook, (3) anything in the content you were unsure about."
+  ],
+  "source_heading_pasted": "The learner's notes (use only these):",
+  "source_none": "(none)",
+  "games": {
+    "quiz": {
+      "name": "Quiz Quest (multiple choice)",
+      "ladder_ok": true,
+      "rules": [
+        "Show one question at a time with exactly four answer options.",
+        "Store each item as: id, question, correct (one answer), wrong (an array of three wrong answers), why. The code builds the four options from correct + wrong and shuffles them every time the question is shown.",
+        "Wrong answers must be plausible, similar in length and style to the correct one, and clearly wrong to someone who knows the topic. The correct answer must not be the longest or the most detailed one.",
+        "After answering, mark the chosen option and the correct option (with symbol and word), show the explanation, then offer a Next button.",
+        "Order questions randomly within a level."
+      ]
+    },
+    "flashcards": {
+      "name": "Flashcards (flip and rate)",
+      "ladder_ok": false,
+      "level_rule": "Levels group cards by depth: level 1 = key terms and short definitions, later levels = more detail, relations and examples on the back of the card. Cards stay recall tasks.",
+      "rules": [
+        "Show the front of a card (a term or question). The learner first tries to recall the answer, then presses Flip (or Space) to see the back.",
+        "After flipping, the learner rates the card: \"Didn't know\", \"Almost\", \"Knew it\". Do not show the rating buttons before flipping.",
+        "Cards rated \"Didn't know\" return after about 2 cards, \"Almost\" after about 5 cards, \"Knew it\" counts toward mastery.",
+        "Store each item as: id, front, back, why (optional extra note). Show cards in shuffled order."
+      ]
+    },
+    "memory": {
+      "name": "Memory Match (find the pairs)",
+      "ladder_ok": false,
+      "level_rule": "Levels group pairs by depth: level 1 = term with short definition, later levels = harder or more detailed pairs. Each level uses {items} pairs, shown at most 8 pairs per round; split larger numbers into several rounds.",
+      "rules": [
+        "Show a grid of face-down cards. Each pair is one card with a term and one card with its matching meaning. The learner flips two cards at a time.",
+        "Matching pairs stay face up; non-matching cards flip back after about one second. Shuffle the card positions at the start of every round and every replay.",
+        "Store each item as: id, term, match (the meaning), why. Never show the term and meaning in a fixed grid order.",
+        "Count attempts, not time. Show the pair's explanation when a match is found.",
+        "Every card must be reachable by keyboard (arrow keys to move, Enter or Space to flip) and have a text label that says whether it is face down, face up or matched."
+      ]
+    },
+    "typeanswer": {
+      "name": "Type the Answer",
+      "ladder_ok": true,
+      "rules": [
+        "Show one question at a time with a text box. The learner types the answer from memory; no options are shown.",
+        "Store each item as: id, question, answer (the main answer), accepted (an array of other correct spellings or synonyms), why.",
+        "Compare answers ignoring upper/lower case and spaces at the start and end. Do not remove diacritics (ä, ö, õ, ü, š, ž and others must count as different letters). Accept anything in the accepted list.",
+        "Short answers only (one to four words or a number). Avoid questions with many possible answers.",
+        "After a wrong answer show the correct answer and offer a button \"I was actually right\" so the learner can overrule the match; such items count as correct."
+      ]
+    },
+    "sort": {
+      "name": "Sort and Classify",
+      "ladder_ok": true,
+      "rules": [
+        "Show a set of items and two to four category buttons. The learner picks an item (click, tap or Enter) and then a category to place it in. Dragging may be offered as an extra, never as the only way.",
+        "Store each item as: id, text, category, why. Categories are listed once. Show the items in shuffled order and shuffle the order of category buttons for each round.",
+        "Check answers when the learner presses \"Check\", not after every placement. Show which items are in the wrong category and why.",
+        "Each category needs at least three items per round and the categories should be easy to confuse but really different."
+      ]
+    },
+    "sequence": {
+      "name": "Sequence Builder (put in order)",
+      "ladder_ok": true,
+      "rules": [
+        "Show a list of steps or events in a shuffled order. The learner moves items with \"Move up\" and \"Move down\" buttons (also arrow keys). Dragging may be offered as an extra, never as the only way.",
+        "Store each sequence as: id, title, steps (an array in the correct order), why. The code shuffles the steps and makes sure the shuffled order is never equal to the correct order.",
+        "Check the order when the learner presses \"Check\". Mark each step as in the right place or not (with symbol and word), but do not reveal the correct order until the learner has tried twice or gives up.",
+        "Use four to seven steps per sequence. Only use sequences that have one correct order."
+      ]
+    }
+  },
+  "level_rule_default": "Levels go up the ladder of thinking skills, one step per level: {ladder_steps}. Items at each level must really ask for that skill, not just be longer. Show the learner which level they are on."
+}
