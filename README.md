@@ -2,7 +2,7 @@
 
 A free web page that helps university students build study games with AI. The student describes a topic, picks one of a few predefined game types, tunes a few options, and gets a ready-to-paste prompt for any AI chat. The AI then writes the game as one self-contained HTML file, which the student can play safely in the browser.
 
-**Status:** planning, phase 1 (prompt lab) in progress. The repository holds the plan, requirements and research, the prompt texts in `prompts/` and a checker for generated games in `tools/`. The web page itself is not built yet. Planned hosting is GitHub Pages, and the page will be available in Estonian and English.
+**Status:** planning and phase 1 (prompt lab) in progress. The repository holds the plan, requirements and research, the prompt texts in `prompts/`, a checker for generated games in `tools/`, and a first **test version of the web page** that builds the prompt (open `index.html` in a browser, or use GitHub Pages once switched on). The Safe Player is not built yet. Planned hosting is GitHub Pages, and the page will be available in Estonian and English.
 
 ## Documentation
 

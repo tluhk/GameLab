@@ -35,3 +35,14 @@ What the checker cannot do: judge whether questions are factually right, whether
 ## Status
 
 The prompts and the checker are written and the checker is tested on known-good and known-bad games. Trial runs with real AI chats, which decide the quality gate, are still to do; results go in `trials/`.
+
+## The web page (test version)
+
+`index.html` is a test version of the prompt builder. Open it in a browser (double-click the file, or use GitHub Pages) and choose a topic, level, game and options; the prompt appears below and can be copied. It uses `js/prompt.js` (the same assembly as `tools/build_prompt.py`), `data/prompts.js` (generated from the JSON files; run `python3 tools/build_data.py` after editing them), and the texts in `i18n/`.
+
+Tests (need Python with Playwright and Chrome):
+
+```text
+python3 tools/test_parity.py     # the page and the Python script give identical prompts
+python3 tools/test_ui.py         # flow, both languages, copy, source mode, contrast, no outside requests
+```
