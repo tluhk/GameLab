@@ -89,6 +89,8 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 - **F9** Follow-up prompts: repair, harder or easier, more items, fact-check, translate, explain my mistakes.
 - **F10** The Safe Player runs pasted games in a locked frame, strips markdown fences, and shows warnings for risky code. Confirmed for version 1, at least for the first testing.
 - **F11** Short "why does the prompt say this?" explanations for each prompt block.
+- **F28** Answer options are shuffled in code each time a question is shown, so the correct answer has no fixed position (a problem seen in students' earlier games). The prompt requires this, and the quality gate tests it.
+- **F29** Readable contrast: text colour and background set explicitly, at least 4.5:1 for normal text and 3:1 for large text and controls, and right or wrong never shown by colour alone. The prompt requires this, and the quality gate measures it.
 - **F21** Progress saving: games remember which items are mastered, on this device only, with a reset button.
 - **F22** Scoreboard option in the builder: a top-ten list on this device with an optional nickname.
 - **F23** The Safe Player's storage bridge, so progress and scores work inside the sandbox.
@@ -118,7 +120,7 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 - **Q3** Keyboard operable, readable contrast and labelled controls, aiming for WCAG 2.1 level AA.
 - **Q4** Small and fast: system fonts, inline icons, no images from outside. A page-weight budget is set in phase 2.
 - **Q5** All wording and game definitions live in data and language files that can be edited without coding.
-- **Q6** Every game module passes the quality gate in [prompt-design.md](prompt-design.md) before release.
+- **Q6** Every game module passes the quality gate in [prompt-design.md](prompt-design.md) before release, including the automatic answer-order and contrast checks.
 
 ### Out of scope for now
 
@@ -131,7 +133,7 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 The work starts with the prompts, because the whole app is only as good as the games they produce. Each phase ends with something that can be opened and reviewed before the next begins.
 
 1. **Approval.** All ten planning questions are settled (see [decisions.md](decisions.md)).
-2. **Phase 1, prompt lab.** Write the shared rule block and the six game prompts, then trial them in both languages. The pass mark is agreed first; the proposal is that at least 9 of 10 runs open, play without edits and contain no outside links. Output: the prompts and a results table.
+2. **Phase 1, prompt lab.** Write the shared rule block and the six game prompts, then trial them in both languages, with automatic checks for answer order and contrast. The pass mark is agreed first; the proposal is that at least 9 of 10 runs open, play without edits and contain no outside links. Output: the prompts and a results table.
 3. **Phase 2, builder page.** Screens, options including progress saving, the scoreboard and source mode with its copyright notice, live prompt, copy button, language switch, and the Estonian and English text. Output: a working page to click through.
 4. **Phase 3, Safe Player.** Paste, scan, sandbox and the storage bridge for progress and scores, plus the student guidance and the follow-up prompts.
 5. **Phase 4, testing and pilot.** Browser, phone, keyboard and accessibility checks, then a small pilot with a few students and a teacher, and fixes from what they find.

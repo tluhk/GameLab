@@ -12,6 +12,7 @@ PROGRESS: {save on this device: yes or no}. SCOREBOARD: {top ten on this device:
 LEARNING RULES:
 - The student answers before the answer is shown.
 - Missed items come back later in the same game.
+- Whenever answer options are shown, shuffle them in code every time the question appears, using a Fisher-Yates shuffle. The correct answer must not sit in a fixed position, and the data block must not rely on option order.
 - An item is done only after {N} correct answers.
 - Level 1 = remember, level 2 = understand, and so on (with a short example each).
 - After every answer, show a one-line explanation.
@@ -23,7 +24,8 @@ TECHNICAL AND SAFETY RULES:
 - No network calls, no eval, no pop-ups, no downloads, no forms that submit.
 - Never ask for a real name, email or password; an optional nickname for the scoreboard stays on this device.
 - Save and load progress and scores only through one small helper that uses try/catch and falls back to memory if browser storage is blocked.
-- Keyboard and touch play, readable contrast, no sound.
+- Keyboard and touch play, no sound.
+- Contrast: set text colour and background colour explicitly on every element. Normal text at least 4.5:1 against its background, buttons and borders at least 3:1, no light-grey text, and never show right or wrong by colour alone (add a symbol and a word).
 OUTPUT: One code block with the whole file, then three short lines: how to open it
 and which answers to double-check.
 SOURCE: {student's pasted notes, optional}
@@ -36,9 +38,24 @@ SOURCE: {student's pasted notes, optional}
 - **A built-in second step.** After the game works, a "fact-check" prompt asks the AI to act as a sceptical teacher and list every item it is not sure about.
 - **Prompt language follows the page language.** The Estonian page produces an Estonian prompt; the language of the game is chosen separately. Trials run in both languages, and if one performs clearly worse, the project owner is told before building further.
 
+## Problems seen in students' earlier games
+
+The project owner's students tried making games with AI before this project. Two problems came up most:
+
+1. **Answer order not randomised.** When a game offered answers to choose from, the order was not shuffled, so for example the right answer was often the first one. Students could then win by pattern instead of knowing the material, which defeats retrieval practice (see [learning-science.md](learning-science.md)). A likely cause is that the AI lists the correct answer first in the question data and the game shows the list as it is.
+2. **Bad contrast.** Some elements, sometimes, were hard to read.
+
+How the project answers them:
+
+- Both are written into every prompt as fixed rules (shown in the skeleton above), not as options. The prompt asks for a Fisher-Yates shuffle, because AI-written games often use a biased shortcut such as sorting with a random comparison.
+- Order-based games (Sequence Builder) must shuffle the starting order and check that it differs from the correct order. Sort and Classify and Memory Match shuffle item and card positions.
+- The quality gate below tests both automatically, so they do not depend on the AI obeying the prompt (see "Automatic checks").
+- The student checklist in the Safe Player guidance includes "does the right answer stay in the same place?" and "can I read everything?".
+- A follow-up prompt, "fix answer order and contrast", is added to the follow-up list.
+
 ## Follow-up prompts
 
-Offered after the first result: repair ("it does not work", with a place to paste the error), make it harder or easier, add more items, fact-check, translate the game, and explain my mistakes (F9).
+Offered after the first result: repair ("it does not work", with a place to paste the error), make it harder or easier, add more items, fact-check, translate the game, explain my mistakes, and fix answer order and contrast (F9, F28, F29).
 
 ## "Why does the prompt say this?"
 
@@ -55,3 +72,13 @@ Each block has a short explanation in plain language (F11). This turns the tool 
 ## Quality gate
 
 No game module ships until it has run in a set of trial runs (each game, in both languages, in several chat AIs) and the result opened, played and contained no outside links. The proposed pass mark is at least 9 of 10 runs that open, play without edits and contain no outside links; the pass mark is agreed before phase 1 starts. Claude can run trials with Claude; trials in other chat AIs need a person with access to them (decision 8 in [decisions.md](decisions.md)).
+
+### Automatic checks
+
+For each trial result, a script opens the game in a headless browser and:
+
+- **Answer order.** Starts the same question set many times and records where the correct answer appears. The gate fails if one position is clearly favoured. The exact count and threshold are set in phase 1.
+- **Contrast.** Measures the contrast ratio of every visible text element against its background and fails the game below 4.5:1 for normal text, or 3:1 for large text and controls.
+- **Outside links.** Looks for outside addresses and network calls.
+
+These checks cannot judge whether a question is correct; that still needs a human (see [learning-science.md](learning-science.md)).

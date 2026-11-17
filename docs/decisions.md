@@ -15,6 +15,10 @@ All ten planning questions are settled for version 1.
 | 9 | Name | Mängulabor (English: Game Lab) | Used on the page and in the README |
 | 10 | Other languages | Maybe later | Not in version 1 (F18) |
 
+## Input from the owner's students
+
+Before this project, the owner's students tried making study games with AI. They reported two main problems: poor contrast on some elements, and answer options not shuffled (for example, correct answers often first). These became fixed prompt rules and automatic quality-gate checks (requirements F28 and F29; see [prompt-design.md](prompt-design.md)). More feedback from the students should be gathered before and during the phase 4 pilot.
+
 ## Repository
 
 The project lives in the `tluhk/GameLab` GitHub repository (created by the project owner). GitHub Pages is planned for hosting; free Pages normally needs a public repository, and GitHub's current rules are to be confirmed before publishing.

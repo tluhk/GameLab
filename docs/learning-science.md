@@ -61,6 +61,10 @@ A 2026 conference paper found that LLM-written answer keys had fewer hallucinati
 - A "fact-check" follow-up prompt asks the AI to act as a sceptical teacher and list every item it is unsure about.
 - The student checklist asks the student to verify three answers against a textbook.
 
+## Answer order and retrieval
+
+Students' earlier AI-made games often left the answer options in a fixed order, with the right answer frequently first (reported by the project owner; not a published study). This works against retrieval practice: if the position gives the answer away, the student recognises a pattern instead of recalling the content. The rule is that options are shuffled in code every time (requirement F28, see [prompt-design.md](prompt-design.md)). Shuffling, together with readable contrast (F29), is also a basic requirement of low cognitive load: nothing on screen should make the task harder or easier than the content does.
+
 ## What this page does not claim
 
 - No study here tests Mängulabor itself.
