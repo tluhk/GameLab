@@ -19,6 +19,17 @@ All ten planning questions are settled for version 1.
 
 Before this project, the owner's students tried making study games with AI. They reported two main problems: poor contrast on some elements, and answer options not shuffled (for example, correct answers often first). These became fixed prompt rules and automatic quality-gate checks (requirements F28 and F29; see [prompt-design.md](prompt-design.md)). More feedback from the students should be gathered before and during the phase 4 pilot.
 
+## Feedback through GitHub issues (F30)
+
+Question from the owner: can users submit feature requests or feedback as GitHub issues? Yes, in one way that fits the plan, with a limit.
+
+- **Chosen approach.** A link on the page opens GitHub's "new issue" form in the repository, with the title, label and a few fields prefilled. The student reviews and submits on GitHub. The page itself makes no request and holds no token, so Q1 still holds. The repository carries three bilingual issue forms (feedback, feature request, something is wrong) in `.github/ISSUE_TEMPLATE/`.
+- **Limit: a GitHub account is needed.** Students without one cannot submit this way. Public issues also show the writer's GitHub name.
+- **Public by default.** Every issue is visible to everyone, so the forms and the page warn against real names, contact details and confidential material.
+- **Not chosen: submitting from the page without an account.** This would need a server or serverless function holding a GitHub token, which breaks the no-backend rule (Q1), adds running costs and moderation work, and invites spam. It can be revisited later.
+- **Alternatives if students often lack GitHub accounts:** GitHub Discussions (still needs an account) or an external form such as a Google or Microsoft form, which loads another site. A decision is open on whether an alternative route is wanted; for now the issue link covers version 1.
+- **Prefilled link detail.** The prefilled text must never include what the student typed in the builder (topic or pasted notes), because it would become public.
+
 ## Repository
 
 The project lives in the `tluhk/GameLab` GitHub repository (created by the project owner). GitHub Pages is planned for hosting; free Pages normally needs a public repository, and GitHub's current rules are to be confirmed before publishing.

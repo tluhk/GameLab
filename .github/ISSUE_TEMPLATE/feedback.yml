@@ -1,0 +1,23 @@
+name: Feedback / Tagasiside
+description: Tell us what worked or did not work in Mängulabor. / Anna teada, mis töötas või ei töötanud.
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not write your real name, contact details or anything confidential. / See sissekanne on avalik. Ära kirjuta oma pärisnime, kontaktandmeid ega konfidentsiaalset infot.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / Mis juhtus?
+    validations:
+      required: true
+  - type: input
+    id: game
+    attributes:
+      label: Game type and topic (optional) / Mängutüüp ja teema (valikuline)
+  - type: input
+    id: ai
+    attributes:
+      label: Which AI chat did you use? (optional) / Millist tehisintellekti vestlust kasutasid? (valikuline)

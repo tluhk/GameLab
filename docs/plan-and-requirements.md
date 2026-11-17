@@ -98,6 +98,8 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 - **F26** For longer material, the page shows steps for attaching a file in the AI chat, and the prompt then refers to the attached file.
 - **F27** A copyright and privacy notice appears whenever source mode is used: use only material you own, may share with AI tools, or that is openly licensed; no confidential material or personal data; follow your institution's rules. This is general guidance, not legal advice, and its wording needs review.
 
+- **F30** Feedback and feature requests through GitHub issues. A "Feedback" link opens a prefilled new-issue page in the project's repository (in a new tab), using issue forms with Estonian and English wording. The page sends nothing by itself and shows a public-post warning first; the student needs a GitHub account to submit. See [decisions.md](decisions.md).
+
 ### Should (version 1.1 or 2)
 
 - **F13** Teacher links: a link that opens the builder with chosen options already set.
@@ -115,7 +117,7 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 
 ### Quality requirements
 
-- **Q1** No backend, accounts, cookies, analytics or requests to other sites.
+- **Q1** No backend, accounts, cookies, analytics or requests to other sites. A plain link the student chooses to click (such as the feedback link) is not a request made by the page.
 - **Q2** Works on current Chrome, Edge, Firefox and Safari, on phones and laptops.
 - **Q3** Keyboard operable, readable contrast and labelled controls, aiming for WCAG 2.1 level AA.
 - **Q4** Small and fast: system fonts, inline icons, no images from outside. A page-weight budget is set in phase 2.
