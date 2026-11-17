@@ -30,14 +30,14 @@
 
   function renderGames() {
     var box = $("games");
-    var selected = (box.querySelector("input:checked") || {}).value;
+    var selected = Array.prototype.map.call(box.querySelectorAll("input:checked"), function (i) { return i.value; });
     box.innerHTML = "";
     GAMES.forEach(function (g) {
       var label = document.createElement("label");
       label.className = "game";
       var input = document.createElement("input");
-      input.type = "radio"; input.name = "game"; input.value = g.id;
-      if (g.id === selected) input.checked = true;
+      input.type = "checkbox"; input.name = "game"; input.value = g.id;
+      if (selected.indexOf(g.id) >= 0) input.checked = true;
       var body = document.createElement("span");
       body.className = "game-body";
       body.innerHTML = '<span class="game-name"></span><span class="game-desc"></span><span class="game-trains"></span>';
@@ -50,11 +50,11 @@
   }
 
   function readOptions() {
-    var game = ($("games").querySelector("input:checked") || {}).value || "";
+    var games = Array.prototype.map.call($("games").querySelectorAll("input:checked"), function (i) { return i.value; });
     var gl = $("gamelang").value;
     var gameLanguage = gl === "page" ? lang : (gl === "other" ? $("gamelang-other").value.trim() : gl);
     return {
-      lang: lang, game: game, topic: $("topic").value.trim(), level: $("level").value,
+      lang: lang, games: games, mixStyle: (document.querySelector("input[name=mixstyle]:checked") || {}).value || "all", topic: $("topic").value.trim(), level: $("level").value,
       levels: $("levels").value, items: $("items").value, difficulty: $("difficulty").value,
       gameLanguage: gameLanguage, mastery: $("mastery").value === "1", replay: $("replay").checked,
       feedback: $("feedback").value, hints: $("hints").checked, time: $("time").value, lives: $("lives").checked,
@@ -67,7 +67,16 @@
 
   var currentText = "";
 
+  function limitGames() {
+    var boxes = $("games").querySelectorAll("input");
+    var count = $("games").querySelectorAll("input:checked").length;
+    Array.prototype.forEach.call(boxes, function (i) { i.disabled = count >= 3 && !i.checked; });
+    $("mix-max").textContent = count >= 3 ? t("mix.max") : "";
+    $("mixbox").hidden = count < 2;
+  }
+
   function update() {
+    limitGames();
     var o = readOptions();
     var gl = $("gamelang").value;
     $("gamelang-other-wrap").hidden = gl !== "other";
@@ -78,7 +87,7 @@
     var missing = [];
     if (!o.topic) missing.push(t("need.topic"));
     if (!o.level) missing.push(t("need.level"));
-    if (!o.game) missing.push(t("need.game"));
+    if (!o.games.length) missing.push(t("need.game"));
     if (gl === "other" && !o.gameLanguage) missing.push(t("need.language"));
     if (o.source === "pasted" && !o.notes) missing.push(t("need.notes"));
 
@@ -86,7 +95,7 @@
       currentText = "";
       $("prompt-ready").hidden = true;
       $("prompt-empty").hidden = false;
-      $("prompt-empty").textContent = (o.topic || o.level || o.game ? t("prompt.needed") + " " + missing.join(", ") : t("prompt.empty"));
+      $("prompt-empty").textContent = (o.topic || o.level || o.games.length ? t("prompt.needed") + " " + missing.join(", ") : t("prompt.empty"));
       $("copy-status").textContent = "";
       return;
     }
@@ -142,7 +151,7 @@
       "replay", "hints", "lives", "summary", "progress", "scoreboard"].forEach(function (id) {
       $(id).addEventListener("input", update); $(id).addEventListener("change", update);
     });
-    Array.prototype.forEach.call(document.querySelectorAll("input[name=source]"), function (r) { r.addEventListener("change", update); });
+    Array.prototype.forEach.call(document.querySelectorAll("input[name=source], input[name=mixstyle]"), function (r) { r.addEventListener("change", update); });
     $("copy").addEventListener("click", copy);
   }
 

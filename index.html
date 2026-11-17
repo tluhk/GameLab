@@ -51,6 +51,13 @@
       <legend class="hint" data-i18n="step2.hint"></legend>
       <div id="games" class="game-grid"></div>
     </fieldset>
+    <p id="mix-max" class="hint" role="status" aria-live="polite"></p>
+    <fieldset class="mixbox" id="mixbox" hidden>
+      <legend data-i18n="mix.legend"></legend>
+      <label class="check"><input type="radio" name="mixstyle" value="all" checked> <span data-i18n="mix.all"></span></label>
+      <label class="check"><input type="radio" name="mixstyle" value="turns"> <span data-i18n="mix.turns"></span></label>
+      <p class="hint" data-i18n="mix.hint"></p>
+    </fieldset>
   </section>
 
   <section class="card" aria-labelledby="h3">
@@ -75,7 +82,13 @@
     <p class="hint" data-i18n="levels.hint"></p>
 
     <details class="more">
-      <summary data-i18n="more.title"></summary>
+      <summary>
+        <span class="more-text">
+          <span class="more-title" data-i18n="more.title"></span>
+          <span class="more-sub" data-i18n="more.sub"></span>
+        </span>
+        <span class="more-chevron" aria-hidden="true"></span>
+      </summary>
       <div class="more-body">
         <div class="row">
           <div class="field">

@@ -19,7 +19,9 @@ def rand_opts(r):
     lang = r.choice(["en", "et"])
     gl = r.choice([None, "et", "en", "Spanish", "Estonian", "eesti keel"])
     source = r.choice(["none", "pasted", "file"])
-    return dict(lang=lang, game=r.choice(bp.GAMES), topic=r.choice(TOPICS), level=r.choice(["intro", "inter", "adv", "prof"]),
+    k = r.choice([1, 1, 2, 3])
+    chosen = r.sample(bp.GAMES, k)
+    return dict(lang=lang, game=",".join(chosen), mix_style=r.choice(["all", "turns"]), topic=r.choice(TOPICS), level=r.choice(["intro", "inter", "adv", "prof"]),
                 levels=r.randint(1, 5), items=r.choice([5, 8, 10, 15]), difficulty=r.choice(["easy", "medium", "hard", "adaptive"]),
                 game_language=gl, mastery=r.random() < .5, replay=r.random() < .5, feedback=r.choice(["short", "explain"]),
                 hints=r.random() < .5, time=r.choice(["off", "relaxed", "tight"]), lives=r.random() < .5,
@@ -30,6 +32,7 @@ def rand_opts(r):
 
 def to_js(o):
     d = dict(o); d["gameLanguage"] = d.pop("game_language") or o["lang"]
+    d["games"] = d.pop("game").split(","); d["mixStyle"] = d.pop("mix_style")
     return d
 
 

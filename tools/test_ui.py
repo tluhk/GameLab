@@ -51,6 +51,22 @@ with sync_playwright() as p:
         check("[%s] copy confirmation shown" % locale, page.locator("#copy-status").inner_text().strip() != "")
         contrast(page, locale + " with prompt")
 
+        # mixing game types
+        check("[%s] mix box hidden with one game" % locale, page.locator("#mixbox").is_hidden())
+        page.locator("label.game").nth(2).click()
+        check("[%s] mix box shown with two games" % locale, page.locator("#mixbox").is_visible())
+        heads = page.evaluate("Array.from(document.querySelectorAll('#preview h4')).map(h=>h.textContent)")
+        check("[%s] mixed prompt has mix section and two game sections" % locale, len(heads) == 12 and heads[6] in ("MIXED GAME", "SEGAMÄNG"), heads)
+        page.check("input[name=mixstyle][value=turns]")
+        check("[%s] turns style changes prompt" % locale, "level 1 =" in page.locator("#preview").inner_text() or "tase 1 =" in page.locator("#preview").inner_text())
+        page.locator("label.game").nth(4).click()
+        check("[%s] fourth game blocked after three" % locale, page.locator("label.game input:disabled").count() == 3 and page.locator("#mix-max").inner_text().strip() != "")
+        page.locator("label.game").nth(4).click()
+        page.locator("label.game").nth(2).click()
+        check("[%s] back to one game, nothing disabled" % locale, page.locator("label.game input:disabled").count() == 0 and page.locator("#mixbox").is_hidden())
+        sbox = page.locator("details.more summary").bounding_box()
+        check("[%s] More options toggle is large and shows description" % locale, sbox["height"] >= 56 and sbox["width"] > 300 and len(page.locator("details.more summary").inner_text()) > 40)
+
         # more options: source pasted
         page.click("details.more summary")
         page.check("input[name=source][value=pasted]")

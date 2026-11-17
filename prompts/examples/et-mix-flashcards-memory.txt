@@ -1,0 +1,75 @@
+ROLL:
+Sa oled kogenud õpetaja ja õppemängude arendaja. Kirjutad õiget, lihtsat ja ligipääsetavat koodi ning täpset õppesisu.
+
+ÕPPIJA:
+Õppija on ülikooli üliõpilane sissejuhatavas kursuses, kes õpib teemat "Fotosüntees". Kirjuta kõik, mida õppija näeb (küsimused, tagasiside, nupud, teated), keeles: eesti keel. Kasuta eesti kirjakeelt, õigeid käändelõpusid ning lihtsat ja loomulikku sõnastust.
+
+MÄNG:
+Mäng: 2 mängutüübi segu: Mälukaardid (pööra ja hinda), Mälumäng (leia paarid). Tasemete arv: 3. Ülesandeid taseme kohta: 8 iga mängutüübi kohta. Algne raskus: keskmine.
+
+EDASIJÕUDMINE JA EDETABEL:
+Salvesta edasijõudmine sellesse seadmesse: mäng jätab meelde, millised ülesanded on selgeks õpitud, ja pakub selgelt märgistatud nuppu "Lähtesta edasijõudmine".
+Ära lisa edetabelit.
+
+ÕPPEREEGLID:
+Järgi neid õppereegleid; need tuginevad uuringutele selle kohta, kuidas inimesed kõige paremini õpivad.
+- Õppija peab vastama enne, kui õige vastus nähtavale tuleb. Ära näita vastuseid ette.
+- Valesti vastatud ülesanded peavad samas mängus hiljem tagasi tulema.
+- Ülesanne loetakse selgeks õpituks alles pärast kahte õiget vastust (mitte tingimata järjest). Näita ülesannete kaupa edasijõudmist.
+- Nende mängutüüpide puhul toimivad tasemed teisiti: Mälukaardid (pööra ja hinda): Tasemed rühmitavad kaardid sügavuse järgi: 1. tase = põhimõisted ja lühikesed definitsioonid, hilisemad tasemed = rohkem üksikasju, seoseid ja näiteid kaardi tagaküljel. Kaardid jäävad meenutamisülesanneteks. Mälumäng (leia paarid): Tasemed rühmitavad paarid sügavuse järgi: 1. tase = termin ja lühike definitsioon, hilisemad tasemed = raskemad või üksikasjalikumad paarid. Iga tase kasutab 8 paari, ühes voorus näidatakse kuni 8 paari; suurema arvu jaga mitmeks vooruks.
+- Pärast iga vastust näita, kas see oli õige või vale, õiget vastust ja ühelauselist selgitust, miks. Näita tagasisidet küsimuse kõrval, mitte eraldi ekraanil.
+- Ära paku vihjeid.
+- Lõpus näita, mitu ülesannet vastati õigesti ja millised vajavad veel harjutamist, ning soovita mängida uuesti mõnel teisel päeval. Lisa nupp "Kopeeri minu tulemus", mis kopeerib lõikelauale lühikese lihttekstilise kokkuvõtte (mäng, teema, tulemus, kuupäev); kui kopeerimine on blokeeritud, näita nähtavat tekstivälja.
+- Taimerit ega ajasurvet ei ole.
+- Elusid ei ole; eksimused ei lõpeta mängu kunagi.
+
+SISUREEGLID:
+Sisu peab olema õige ja kontrollitav.
+- Pane kõik küsimused ja vastused ÜHTE selgelt märgistatud andmeplokki skripti algusesse, lihtsalt loetaval kujul, et mitteprogrammeerija saaks seda lugeda ja parandada. Märgi see kommentaariga: "QUESTIONS: edit here".
+- Anna igale ülesandele unikaalne id ja ühelauseline selgitus, miks vastus on õige.
+- Ära mõtle välja fakte, nimesid, arve, tsitaate ega viiteid. Kui sa millegi suhtes kindel ei ole, jäta see välja.
+- Igal küsimusel peab olema täpselt üks selgelt õige vastus. Väldi nipiküsimusi ning valikuid "kõik ülaltoodud" ja "ükski ülaltoodust".
+- Kasuta ainult teema üldtunnustatud teadmisi. Kui teema on kitsas või uus ja sa ei ole kindel, ütle seda oma kolmel lõpurealt, mitte ära hakka arvama.
+
+SEGAMÄNG:
+- See on ÜKS mäng ÜHES HTML-failis, mis ühendab ülalnimetatud mängutüübid. Iga mängutüübi reeglid on selle jaotise järel eraldi jaotistes. Ära tee eraldi faile.
+- Näita lühikest avaekraani. Mängu ajal näita alati, millises mängutüübis ja millisel tasemel õppija on, ning üht ühist edenemise näitu.
+- Iga tase sisaldab ühte vooru igast mängutüübist selles järjekorras: Mälukaardid (pööra ja hinda), Mälumäng (leia paarid). Igas voorus on 8 ülesannet. Kõrgemad tasemed on raskemad iga mängutüübi jaoks.
+- Edasijõudmine, selgeksõppimine ja edetabel on kogu mängul ühised. Igal ülesandel on unikaalne id ja ta kuulub ühele mängutüübile; valesti vastatud ülesanded tulevad tagasi oma mängutüübi sees. Teisele mängutüübile üleminek ei tohi edasijõudmist kaotada.
+- Pane kõigi mängutüüpide sisu ühte andmeplokki QUESTIONS, iga mängutüübi jaoks eraldi selgelt märgistatud alamplokina, igaüks selles andmevormingus, mida see mängutüüp nõuab.
+- Hoia kood kompaktne: kirjuta iga mängutüüp ühe väikese funktsiooni või moodulina ning kasuta ühiselt värvipaletti, segamisfunktsiooni, salvestamise ja laadimise abifunktsiooni ning juhtelemente.
+
+1. MÄNGUTÜÜBI REEGLID: Mälukaardid (pööra ja hinda):
+- Näita kaardi esikülge (termin või küsimus). Õppija püüab kõigepealt vastust meenutada ja vajutab siis nuppu "Pööra" (või tühikut), et näha tagakülge.
+- Pärast pööramist hindab õppija kaarti: "Ei teadnud", "Peaaegu", "Teadsin". Ära näita hindamisnuppe enne pööramist.
+- Kaardid, mis said hinde "Ei teadnud", tulevad tagasi umbes 2 kaardi järel, "Peaaegu" umbes 5 kaardi järel, "Teadsin" läheb selgeksõppimise arvestusse.
+- Salvesta iga ülesanne kujul: id, front, back, why (valikuline lisamärkus). Näita kaarte segatud järjekorras.
+
+2. MÄNGUTÜÜBI REEGLID: Mälumäng (leia paarid):
+- Näita kaartide ruudustikku, kus kaardid on tagurpidi. Iga paar koosneb ühest terminikaardist ja ühest sellele vastava tähendusega kaardist. Õppija pöörab korraga kaks kaarti.
+- Sobivad paarid jäävad avatuks; mittesobivad kaardid pöörduvad umbes sekundi pärast tagasi. Sega kaartide asukohad iga vooru ja iga kordusmängu alguses.
+- Salvesta iga ülesanne kujul: id, term, match (tähendus), why. Ära kunagi näita terminit ja tähendust kindlas ruudustiku järjekorras.
+- Loe katseid, mitte aega. Kui paar on leitud, näita selle selgitust.
+- Iga kaart peab olema klaviatuuriga ligipääsetav (nooleklahvid liikumiseks, Enter või tühik pööramiseks) ja tal peab olema tekstisilt, mis ütleb, kas ta on tagurpidi, avatud või sobitatud.
+
+VÄLIMUS:
+- Määra teksti- ja taustavärv selgelt igale elemendile. Ära kunagi toetu vaikeväärtustele ega päritud värvidele ning ära kasuta kunagi helehalli teksti.
+- Tavalise teksti kontrast tausta suhtes peab olema vähemalt 4,5:1; nuppude, äärisejoonte ja suure teksti kontrast vähemalt 3:1.
+- Ära näita õiget ega valet ainult värviga: lisa ka sümbol (✔ või ✘) ja sõna.
+- Kasuta seda paletti: lehe taust #FFFFFF, tekst #1A1A1A, nuppude taust #1F4E79 ja tekst #FFFFFF, õige #0B6B2D, vale #A61B1B, fookusjoon #000000.
+- Kasuta süsteemset kirjatüüpi, vähemalt 18 pikslist põhikirjasuurust ja suuri klõpsatavaid alasid (vähemalt 44 pikslit).
+
+TEHNILISED JA TURVAREEGLID:
+Tehnilised ja turvareeglid; need on ranged.
+- Tee ÜKS iseseisev HTML-fail, mille CSS ja JavaScript on failis sees. Ühtegi linki, teeki, fonti, pilti, ikooni ega skripti väljastpoolt. Mingeid väliseid aadresse ei tohi olla.
+- Võrgukutseid ei tohi olla (ei fetch, XMLHttpRequest, WebSocket ega majakaid), ei eval'i ega sarnast, ei hüpikaknaid ega uusi aknaid, ei allalaadimisi, ei vorme, mis midagi saadavad, ega küpsiseid.
+- Ära kunagi küsi pärisnime, e-posti aadressi, parooli ega muid isikuandmeid.
+- Salvesta ja laadi andmeid ainult ühe väikese abifunktsiooni kaudu, mis koosneb kahest funktsioonist ning kasutab try/catch'i ja langeb mälu peale tagasi, kui brauseri salvestus on blokeeritud (see võib olla): saveData(key, value) ja loadData(key, defaultValue). Kasuta võtme eesliidet "mangulabor:flashcards-memory:".
+- Kui vastusevariandid, kaardid või ülesanded on näidatud muutuvas järjekorras, sega need koodis iga kord enne näitamist, kasutades täpselt seda funktsiooni: function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;} Ära sega sort() ja Math.random()'iga. Õige vastus ei tohi olla kindlal kohal ning andmeplokk ei tohi sõltuda valikute järjekorrast.
+- Kõik peab töötama klaviatuuri (Tab, Enter, Tühik, nooleklahvid) ja puutega, mitte ainult hiirega. Igal juhtelemendil peab olema nähtav fookusjoon ja tekstisilt. Märgi küsimuse ala role="status" või aria-live atribuudiga, et ekraanilugeja teataks tagasisidest.
+- Heli ei tohi olla. Ei mingit vilkumist ega kiiret animatsiooni.
+- Käsitle vigu nii, et ekraan ei jää tühjaks: kui midagi ebaõnnestub, näita lühikest lihtsat teadet.
+
+VÄLJUND:
+- Vasta ÜHE koodiplokiga, mis sisaldab kogu HTML-faili, ja selle sees ei ole midagi muud.
+- Kirjuta pärast koodiplokki täpselt kolm lühikest rida: (1) kuidas mängu avada (salvesta nimega game.html ja ava brauseris), (2) milliseid kolme vastust õppija peaks õpikust üle kontrollima, (3) mille suhtes sa sisus kindel ei olnud.

@@ -13,7 +13,8 @@ window.MANGULABOR_PROMPTS = {
    "look": "LOOK",
    "tech": "TECHNICAL AND SAFETY RULES",
    "output": "OUTPUT",
-   "source": "SOURCE"
+   "source": "SOURCE",
+   "mix": "MIXED GAME"
   },
   "role": "You are an expert teacher and educational game developer. You write correct, simple, accessible code and accurate study content.",
   "learner": "The learner is {level_text}, studying \"{topic}\". Write everything the learner sees (questions, feedback, buttons, messages) in {game_language}.{standard_lang_note}",
@@ -176,7 +177,20 @@ window.MANGULABOR_PROMPTS = {
     ]
    }
   },
-  "level_rule_default": "Levels go up the ladder of thinking skills, one step per level: {ladder_steps}. Items at each level must really ask for that skill, not just be longer. Show the learner which level they are on."
+  "level_rule_default": "Levels go up the ladder of thinking skills, one step per level: {ladder_steps}. Items at each level must really ask for that skill, not just be longer. Show the learner which level they are on.",
+  "game_line_mix": "Game: a mix of {n} game types: {game_names}. Number of levels: {levels}. Items per level: {items} for each game type. Starting difficulty: {difficulty_text}.",
+  "mix_common": [
+   "This is ONE game in ONE HTML file that combines the game types listed above. The rules for each game type follow in the sections after this one. Do not make separate files.",
+   "Show a short start screen. During play always show which game type and which level the learner is in, and one shared progress display.",
+   "{mix_style_rule}",
+   "Progress, mastery and the scoreboard are shared across the whole game. Every item has a unique id and belongs to one game type; missed items return within their own game type. Switching to another game type must not lose progress.",
+   "Put the content for every game type in the single QUESTIONS data block, as one clearly labelled sub-block per game type, each in the data format that game type asks for.",
+   "Keep the code compact: write each game type as one small function or module, and share the colour palette, the shuffle function, the save and load helper and the controls between them."
+  ],
+  "mix_style_all": "Every level contains one round of each game type, in this order: {game_names}. Each round uses {items} items. Higher levels are harder for every game type.",
+  "mix_style_turns": "Each level uses ONE game type, taking turns in this order: {turns}. After the last game type, start again from the first. Each level uses {items} items.",
+  "level_rule_mix_suffix": "For these game types the levels work differently:",
+  "gamerules_n": "RULES FOR GAME TYPE {n}: {game_name}"
  },
  "et": {
   "lang": "et",
@@ -191,7 +205,8 @@ window.MANGULABOR_PROMPTS = {
    "look": "VÄLIMUS",
    "tech": "TEHNILISED JA TURVAREEGLID",
    "output": "VÄLJUND",
-   "source": "ALLIKAS"
+   "source": "ALLIKAS",
+   "mix": "SEGAMÄNG"
   },
   "role": "Sa oled kogenud õpetaja ja õppemängude arendaja. Kirjutad õiget, lihtsat ja ligipääsetavat koodi ning täpset õppesisu.",
   "learner": "Õppija on {level_text}, kes õpib teemat \"{topic}\". Kirjuta kõik, mida õppija näeb (küsimused, tagasiside, nupud, teated), keeles: {game_language}.{standard_lang_note}",
@@ -354,6 +369,19 @@ window.MANGULABOR_PROMPTS = {
     ]
    }
   },
-  "level_rule_default": "Tasemed liiguvad mõtlemisoskuste redelil ülespoole, üks aste taseme kohta: {ladder_steps}. Iga taseme ülesanded peavad tõesti seda oskust nõudma, mitte olema lihtsalt pikemad. Näita õppijale, mis tasemel ta on."
+  "level_rule_default": "Tasemed liiguvad mõtlemisoskuste redelil ülespoole, üks aste taseme kohta: {ladder_steps}. Iga taseme ülesanded peavad tõesti seda oskust nõudma, mitte olema lihtsalt pikemad. Näita õppijale, mis tasemel ta on.",
+  "game_line_mix": "Mäng: {n} mängutüübi segu: {game_names}. Tasemete arv: {levels}. Ülesandeid taseme kohta: {items} iga mängutüübi kohta. Algne raskus: {difficulty_text}.",
+  "mix_common": [
+   "See on ÜKS mäng ÜHES HTML-failis, mis ühendab ülalnimetatud mängutüübid. Iga mängutüübi reeglid on selle jaotise järel eraldi jaotistes. Ära tee eraldi faile.",
+   "Näita lühikest avaekraani. Mängu ajal näita alati, millises mängutüübis ja millisel tasemel õppija on, ning üht ühist edenemise näitu.",
+   "{mix_style_rule}",
+   "Edasijõudmine, selgeksõppimine ja edetabel on kogu mängul ühised. Igal ülesandel on unikaalne id ja ta kuulub ühele mängutüübile; valesti vastatud ülesanded tulevad tagasi oma mängutüübi sees. Teisele mängutüübile üleminek ei tohi edasijõudmist kaotada.",
+   "Pane kõigi mängutüüpide sisu ühte andmeplokki QUESTIONS, iga mängutüübi jaoks eraldi selgelt märgistatud alamplokina, igaüks selles andmevormingus, mida see mängutüüp nõuab.",
+   "Hoia kood kompaktne: kirjuta iga mängutüüp ühe väikese funktsiooni või moodulina ning kasuta ühiselt värvipaletti, segamisfunktsiooni, salvestamise ja laadimise abifunktsiooni ning juhtelemente."
+  ],
+  "mix_style_all": "Iga tase sisaldab ühte vooru igast mängutüübist selles järjekorras: {game_names}. Igas voorus on {items} ülesannet. Kõrgemad tasemed on raskemad iga mängutüübi jaoks.",
+  "mix_style_turns": "Iga tase kasutab ÜHTE mängutüüpi, mis vahelduvad selles järjekorras: {turns}. Pärast viimast mängutüüpi alusta uuesti esimesest. Igal tasemel on {items} ülesannet.",
+  "level_rule_mix_suffix": "Nende mängutüüpide puhul toimivad tasemed teisiti:",
+  "gamerules_n": "{n}. MÄNGUTÜÜBI REEGLID: {game_name}"
  }
 };
