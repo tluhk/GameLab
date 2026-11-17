@@ -27,7 +27,7 @@ Question from the owner: can users submit feature requests or feedback as GitHub
 - **Limit: a GitHub account is needed.** Students without one cannot submit this way. Public issues also show the writer's GitHub name.
 - **Public by default.** Every issue is visible to everyone, so the forms and the page warn against real names, contact details and confidential material.
 - **Not chosen: submitting from the page without an account.** This would need a server or serverless function holding a GitHub token, which breaks the no-backend rule (Q1), adds running costs and moderation work, and invites spam. It can be revisited later.
-- **Alternatives if students often lack GitHub accounts:** GitHub Discussions (still needs an account) or an external form such as a Google or Microsoft form, which loads another site. A decision is open on whether an alternative route is wanted; for now the issue link covers version 1.
+- **Decided: GitHub issues only for now.** Other routes can be added later if needed, for example GitHub Discussions (still needs an account) or an external form such as a Google or Microsoft form, which would mean linking to another site.
 - **Prefilled link detail.** The prefilled text must never include what the student typed in the builder (topic or pasted notes), because it would become public.
 
 ## Repository
