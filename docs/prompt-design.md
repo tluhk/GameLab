@@ -1,6 +1,6 @@
 # Prompt design
 
-Every prompt is assembled from the same blocks: the student's choices fill the blanks, and the learning, content and safety rules never change. The sketch below shows the shape; the final wording is written and tested in phase 1.
+The working prompt texts are in [`prompts/`](../prompts/README.md); the sketch here is a simplified view. Every prompt is assembled from the same blocks: the student's choices fill the blanks, and the learning, content and safety rules never change. The sketch below shows the shape; the final wording is written and tested in phase 1.
 
 ## Prompt skeleton
 

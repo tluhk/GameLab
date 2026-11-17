@@ -2,7 +2,7 @@
 
 A free web page that helps university students build study games with AI. The student describes a topic, picks one of a few predefined game types, tunes a few options, and gets a ready-to-paste prompt for any AI chat. The AI then writes the game as one self-contained HTML file, which the student can play safely in the browser.
 
-**Status:** planning. There is no code yet; this repository currently holds the plan, requirements and research. Planned hosting is GitHub Pages, and the page will be available in Estonian and English.
+**Status:** planning, phase 1 (prompt lab) in progress. The repository holds the plan, requirements and research, the prompt texts in `prompts/` and a checker for generated games in `tools/`. The web page itself is not built yet. Planned hosting is GitHub Pages, and the page will be available in Estonian and English.
 
 ## Documentation
 
@@ -14,6 +14,7 @@ A free web page that helps university students build study games with AI. The st
 | [docs/game-catalogue-and-options.md](docs/game-catalogue-and-options.md) | The predefined game types and the options a student can choose |
 | [docs/prompt-design.md](docs/prompt-design.md) | How the generated prompt is built, follow-up prompts and the quality gate |
 | [docs/safety.md](docs/safety.md) | How AI-generated games are kept safe to run in the browser |
+| [prompts/README.md](prompts/README.md) | The prompt texts (English and Estonian), how to assemble them and how to check a generated game |
 | [docs/decisions.md](docs/decisions.md) | Decisions made so far and open assumptions |
 | [docs/sources.md](docs/sources.md) | All sources, marked by whether the full page was read |
 

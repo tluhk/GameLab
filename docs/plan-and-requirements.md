@@ -135,7 +135,7 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 The work starts with the prompts, because the whole app is only as good as the games they produce. Each phase ends with something that can be opened and reviewed before the next begins.
 
 1. **Approval.** All ten planning questions are settled (see [decisions.md](decisions.md)).
-2. **Phase 1, prompt lab.** Write the shared rule block and the six game prompts, then trial them in both languages, with automatic checks for answer order and contrast. The pass mark is agreed first; the proposal is that at least 9 of 10 runs open, play without edits and contain no outside links. Output: the prompts and a results table.
+2. **Phase 1, prompt lab (in progress: prompts and checker written; trial runs still to do; see [`prompts/`](../prompts/README.md)).** Write the shared rule block and the six game prompts, then trial them in both languages, with automatic checks for answer order and contrast. The pass mark is agreed first; the proposal is that at least 9 of 10 runs open, play without edits and contain no outside links. Output: the prompts and a results table.
 3. **Phase 2, builder page.** Screens, options including progress saving, the scoreboard and source mode with its copyright notice, live prompt, copy button, language switch, and the Estonian and English text. Output: a working page to click through.
 4. **Phase 3, Safe Player.** Paste, scan, sandbox and the storage bridge for progress and scores, plus the student guidance and the follow-up prompts.
 5. **Phase 4, testing and pilot.** Browser, phone, keyboard and accessibility checks, then a small pilot with a few students and a teacher, and fixes from what they find.

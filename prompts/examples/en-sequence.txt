@@ -1,0 +1,60 @@
+ROLE:
+You are an expert teacher and educational game developer. You write correct, simple, accessible code and accurate study content.
+
+LEARNER:
+The learner is a university student in an introductory course, studying "Photosynthesis". Write everything the learner sees (questions, feedback, buttons, messages) in English.
+
+GAME:
+Game type: Sequence Builder (put in order). Number of levels: 3. Items per level: 8. Starting difficulty: medium.
+
+PROGRESS AND SCOREBOARD:
+Save progress on this device: the game remembers which items are mastered and offers a clearly labelled "Reset progress" button.
+Do not include a scoreboard.
+
+LEARNING RULES:
+Follow these study rules; they come from research on how people learn best.
+- The learner must answer before the answer is shown. Never show answers up front.
+- Items answered wrongly must come back later in the same game.
+- An item counts as learned only after it has been answered correctly twice (not necessarily in a row). Show per-item progress.
+- Levels go up the ladder of thinking skills, one step per level: 1 = remember (recall a fact, term or definition); 2 = understand (recognise meaning, explain or give an example); 3 = apply (use the idea in a new, concrete situation). Items at each level must really ask for that skill, not just be longer. Show the learner which level they are on.
+- After each answer show whether it was right or wrong, the right answer, and a one-line explanation of why. Show the feedback next to the question, not on a separate screen.
+- Do not offer hints.
+- At the end, show how many items were answered correctly and which items need more practice, and suggest playing again on another day. Include a button "Copy my result" that copies a short plain-text summary (game, topic, score, date) to the clipboard, with a visible fallback text box if copying is blocked.
+- There is no timer and no time pressure.
+- There are no lives; mistakes never end the game.
+
+CONTENT RULES:
+Content must be correct and checkable.
+- Put all questions and answers in ONE clearly labelled data block at the top of the script, in plain readable form, so a non-programmer can read and correct it. Mark it with a comment: "QUESTIONS: edit here".
+- Give every item a unique id and a one-line explanation of why the answer is right.
+- Do not invent facts, names, numbers, quotations or references. If you are not sure about something, leave it out.
+- Every question must have exactly one clearly correct answer. Avoid trick questions, and avoid "all of the above" and "none of the above".
+- Use well-established knowledge of the topic only. If the topic is narrow or recent and you are unsure, say so in your three closing lines instead of guessing.
+
+RULES FOR THIS GAME:
+- Show a list of steps or events in a shuffled order. The learner moves items with "Move up" and "Move down" buttons (also arrow keys). Dragging may be offered as an extra, never as the only way.
+- Store each sequence as: id, title, steps (an array in the correct order), why. The code shuffles the steps and makes sure the shuffled order is never equal to the correct order.
+- Check the order when the learner presses "Check". Mark each step as in the right place or not (with symbol and word), but do not reveal the correct order until the learner has tried twice or gives up.
+- Use four to seven steps per sequence. Only use sequences that have one correct order.
+
+LOOK:
+- Set text colour and background colour explicitly on every element. Never rely on defaults or inherited colours, and never use light-grey text.
+- Normal text must have at least 4.5:1 contrast against its background; buttons, borders and large text at least 3:1.
+- Never show right or wrong by colour alone: also add a symbol (✔ or ✘) and a word.
+- Use this palette: page background #FFFFFF, text #1A1A1A, buttons background #1F4E79 with text #FFFFFF, correct #0B6B2D, wrong #A61B1B, focus outline #000000.
+- Use a system font stack, a base font size of at least 18px, and large tap targets (at least 44px).
+
+TECHNICAL AND SAFETY RULES:
+Technical and safety rules; these are strict.
+- Produce ONE self-contained HTML file with inline CSS and JavaScript. No links, libraries, fonts, images, icons or scripts from outside. No external addresses of any kind.
+- No network calls (no fetch, XMLHttpRequest, WebSocket, beacons), no eval or similar, no pop-ups or new windows, no downloads, no forms that submit, no cookies.
+- Never ask for a real name, email address, password or any personal data.
+- Save and load data only through one small helper built from these two functions, with try/catch and a fallback to memory if browser storage is blocked (it may be blocked): saveData(key, value) and loadData(key, defaultValue). Use the key prefix "mangulabor:sequence:".
+- Whenever answer options, cards or items are shown in a changing order, shuffle them in code every time they are shown, using exactly this function: function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;} Do not shuffle with sort() and Math.random(). The correct answer must not sit in a fixed position, and the data block must not depend on the order of options.
+- Everything must work with keyboard (Tab, Enter, Space, arrow keys) and touch, not only a mouse. Every control needs a visible focus outline and a text label. Mark the question area with role="status" or aria-live so screen readers announce feedback.
+- No sound. No flashing or fast animation.
+- Handle errors without a blank screen: if something fails, show a short plain message.
+
+OUTPUT:
+- Reply with ONE code block containing the complete HTML file, and nothing else inside it.
+- After the code block, write exactly three short lines: (1) how to open the game (save as game.html and open it in a browser), (2) which three answers the learner should double-check in a textbook, (3) anything in the content you were unsure about.
