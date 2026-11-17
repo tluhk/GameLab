@@ -22,6 +22,23 @@ Each game has its own prompt module that is written and tested in advance, so st
 
 More advanced types such as platformers are wanted later (decision 3 in [decisions.md](decisions.md)).
 
+## Mixing game types
+
+A student can tick up to three of the version 1 games and combine them in one game (requirement F31). The prompt then asks for one HTML file with a start screen, a shared progress display and one data block with a labelled sub-block per game type.
+
+| Way to combine | What happens |
+| --- | --- |
+| Every level has a round of each game (default) | Level 1 plays all chosen games in turn, then level 2, and so on. Items per level counts for each game type. |
+| Each level uses one game, taking turns | Level 1 uses the first game, level 2 the second, and so on, starting again after the last. |
+
+Rules and limits:
+- Games are combined in catalogue order, not in the order ticked.
+- At most three, because a single file with more games gets large and error-prone for the AI to write and for a student to fix.
+- Progress, mastery and the scoreboard are shared. Missed items return inside their own game type. Each game keeps its own rules, including shuffling and contrast.
+- For flashcards and memory match, "level" means depth of content, not a step on the thinking-skill ladder. In a mix the prompt tells the AI to apply each game's own level rule.
+- Action-style games (platformer, escape puzzle) are not mixable. They need their own tests against the cognitive-load rule (see [learning-science.md](learning-science.md)).
+- Mixes have not been tried in real AI chats yet. The mixes students are likely to pick need trial runs before release. The automatic checker tests shuffling and contrast of the whole file, but it only measures the position of the correct answer in single quiz games.
+
 ## Options the student can choose
 
 The main screen asks for five things; everything else sits under "More options" with defaults, so a first-time user never faces a long form.
@@ -30,7 +47,7 @@ The main screen asks for five things; everything else sits under "More options" 
 | --- | --- | --- | --- |
 | Topic | Free text, for example "photosynthesis" | Required | Main |
 | Study level | Introductory, intermediate or advanced course; professional or continuing training | Must choose | Main |
-| Game type | One of the catalogue | Must choose | Main |
+| Game type | One of the catalogue, or up to three to mix | Must choose | Main |
 | Difficulty | Easy, medium, hard, adaptive (the game adjusts to the player) | Medium | Main |
 | Number of levels | 1 to 5; each level moves up the Bloom ladder | 3 | Main |
 | Subject area | Languages, maths, natural sciences, humanities, other; used to suggest fitting games | Suggests only | More |

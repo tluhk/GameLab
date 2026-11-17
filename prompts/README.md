@@ -11,6 +11,7 @@ The prompt texts of Mängulabor live here as data, one file per page language:
 ```text
 python3 tools/build_prompt.py --lang en --game quiz --topic "Photosynthesis" --levels 3 --items 8 > prompt.txt
 python3 tools/build_prompt.py --lang et --game sort --topic "Fotosüntees" --scoreboard --look dark
+python3 tools/build_prompt.py --lang en --game quiz,memory --topic "Photosynthesis" --mix-style turns   # a mix of up to three games
 ```
 
 Run `python3 tools/build_prompt.py --help` for all options (they match the options in `docs/game-catalogue-and-options.md`).
@@ -35,6 +36,10 @@ What the checker cannot do: judge whether questions are factually right, whether
 ## Status
 
 The prompts and the checker are written and the checker is tested on known-good and known-bad games. Trial runs with real AI chats, which decide the quality gate, are still to do; results go in `trials/`.
+
+## Mixed games
+
+`--game` accepts up to three games separated by commas. The prompt gets a MIXED GAME section and one RULES FOR GAME TYPE section per game; `--mix-style all` (default) puts a round of every game in each level, `--mix-style turns` gives each level one game in turn. `examples/` has two mixes per language.
 
 ## The web page (test version)
 

@@ -30,6 +30,13 @@ Question from the owner: can users submit feature requests or feedback as GitHub
 - **Decided: GitHub issues only for now.** Other routes can be added later if needed, for example GitHub Discussions (still needs an account) or an external form such as a Google or Microsoft form, which would mean linking to another site.
 - **Prefilled link detail.** The prefilled text must never include what the student typed in the builder (topic or pasted notes), because it would become public.
 
+## Mixing game types and the "More options" button
+
+On 17 November 2026 the owner asked for two changes: students should be able to mix game types (for example flashcards and memory match), and the "More options" control was hard to find.
+
+- **Mixing (F31).** Up to three of the six version 1 games can be combined, in two ways (every level has all, or one game per level in turns). Action games cannot be mixed. See [game-catalogue-and-options.md](game-catalogue-and-options.md).
+- **More options (F32).** The control is now a large labelled button that says what is inside. Moving the "source material" choice (own notes or file) out of "More options" onto the main screen is still possible if students miss that too.
+
 ## Paid licence
 
 On 17 November 2026 the owner asked for a licence that requires a fee to use the application and its source code. A first draft is in the `LICENSE` file at the root of the repository.
