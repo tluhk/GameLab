@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mängulabor</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+<header class="top">
+  <div class="wrap top-row">
+    <div>
+      <h1 class="brand"><span data-i18n="app.name">Mängulabor</span> <span class="brand-en" data-i18n="app.name.english">Game Lab</span></h1>
+      <p class="tagline" data-i18n="app.tagline"></p>
+    </div>
+    <div class="lang" role="group" data-i18n-aria="lang.switch" aria-label="Language">
+      <button type="button" class="langbtn" data-lang="et" aria-pressed="false" lang="et">ET</button>
+      <button type="button" class="langbtn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="note beta" role="note">
+    <strong data-i18n="beta.title"></strong> <span data-i18n="beta.text"></span>
+  </div>
+
+  <section class="card" aria-labelledby="h1">
+    <h2 id="h1" data-i18n="step1.title"></h2>
+    <div class="field">
+      <label for="topic" data-i18n="topic.label"></label>
+      <p class="hint" id="topic-hint" data-i18n="topic.hint"></p>
+      <input id="topic" type="text" maxlength="200" autocomplete="off" aria-describedby="topic-hint" data-i18n-placeholder="topic.placeholder">
+    </div>
+    <div class="field">
+      <label for="level" data-i18n="level.label"></label>
+      <select id="level">
+        <option value="" data-i18n="choose">Choose…</option>
+        <option value="intro" data-i18n="level.intro"></option>
+        <option value="inter" data-i18n="level.inter"></option>
+        <option value="adv" data-i18n="level.adv"></option>
+        <option value="prof" data-i18n="level.prof"></option>
+      </select>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h2">
+    <h2 id="h2" data-i18n="step2.title"></h2>
+    <fieldset class="games">
+      <legend class="hint" data-i18n="step2.hint"></legend>
+      <div id="games" class="game-grid"></div>
+    </fieldset>
+  </section>
+
+  <section class="card" aria-labelledby="h3">
+    <h2 id="h3" data-i18n="step3.title"></h2>
+    <div class="row">
+      <div class="field">
+        <label for="difficulty" data-i18n="difficulty.label"></label>
+        <select id="difficulty">
+          <option value="easy" data-i18n="difficulty.easy"></option>
+          <option value="medium" data-i18n="difficulty.medium" selected></option>
+          <option value="hard" data-i18n="difficulty.hard"></option>
+          <option value="adaptive" data-i18n="difficulty.adaptive"></option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="levels" data-i18n="levels.label"></label>
+        <select id="levels">
+          <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+    </div>
+    <p class="hint" data-i18n="levels.hint"></p>
+
+    <details class="more">
+      <summary data-i18n="more.title"></summary>
+      <div class="more-body">
+        <div class="row">
+          <div class="field">
+            <label for="items" data-i18n="items.label"></label>
+            <select id="items"><option>5</option><option selected>8</option><option>10</option><option>15</option></select>
+          </div>
+          <div class="field">
+            <label for="gamelang" data-i18n="gamelang.label"></label>
+            <select id="gamelang">
+              <option value="page" data-i18n="gamelang.page" selected></option>
+              <option value="et" data-i18n="gamelang.et"></option>
+              <option value="en" data-i18n="gamelang.en"></option>
+              <option value="other" data-i18n="gamelang.other"></option>
+            </select>
+          </div>
+        </div>
+        <div class="field" id="gamelang-other-wrap" hidden>
+          <label for="gamelang-other" data-i18n="gamelang.other.label"></label>
+          <input id="gamelang-other" type="text" maxlength="40" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="mastery" data-i18n="mastery.label"></label>
+          <select id="mastery">
+            <option value="1" data-i18n="mastery.on" selected></option>
+            <option value="0" data-i18n="mastery.off"></option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="feedback" data-i18n="feedback.label"></label>
+            <select id="feedback">
+              <option value="explain" data-i18n="feedback.explain" selected></option>
+              <option value="short" data-i18n="feedback.short"></option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="time" data-i18n="time.label"></label>
+            <select id="time">
+              <option value="off" data-i18n="time.off" selected></option>
+              <option value="relaxed" data-i18n="time.relaxed"></option>
+              <option value="tight" data-i18n="time.tight"></option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="look" data-i18n="look.label"></label>
+            <select id="look">
+              <option value="light" data-i18n="look.light" selected></option>
+              <option value="dark" data-i18n="look.dark"></option>
+              <option value="contrast" data-i18n="look.contrast"></option>
+            </select>
+        </div>
+        <div class="field">
+          <label for="theme" data-i18n="theme.label"></label>
+          <p class="hint" id="theme-hint" data-i18n="theme.hint"></p>
+          <input id="theme" type="text" maxlength="60" autocomplete="off" aria-describedby="theme-hint">
+        </div>
+
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="replay" checked> <span data-i18n="replay.label"></span></label>
+          <label class="check"><input type="checkbox" id="hints"> <span data-i18n="hints.label"></span></label>
+          <label class="check"><input type="checkbox" id="lives"> <span data-i18n="lives.label"></span></label>
+          <label class="check"><input type="checkbox" id="summary" checked> <span data-i18n="summary.label"></span></label>
+          <label class="check"><input type="checkbox" id="progress" checked> <span data-i18n="progress.label"></span></label>
+          <label class="check"><input type="checkbox" id="scoreboard"> <span data-i18n="scoreboard.label"></span></label>
+        </div>
+
+        <fieldset class="source">
+          <legend data-i18n="source.label"></legend>
+          <p class="hint" data-i18n="source.hint"></p>
+          <label class="check"><input type="radio" name="source" value="none" checked> <span data-i18n="source.none"></span></label>
+          <label class="check"><input type="radio" name="source" value="pasted"> <span data-i18n="source.pasted"></span></label>
+          <label class="check"><input type="radio" name="source" value="file"> <span data-i18n="source.file"></span></label>
+        </fieldset>
+        <div class="field" id="notes-wrap" hidden>
+          <label for="notes" data-i18n="notes.label"></label>
+          <textarea id="notes" rows="8" data-i18n-placeholder="notes.placeholder"></textarea>
+        </div>
+        <div class="note" id="notice" role="note" hidden>
+          <strong data-i18n="notice.title"></strong>
+          <ul>
+            <li data-i18n="notice.1"></li><li data-i18n="notice.2"></li><li data-i18n="notice.3"></li><li data-i18n="notice.4"></li>
+          </ul>
+        </div>
+        <div class="note" id="filesteps" role="note" hidden>
+          <strong data-i18n="file.title"></strong>
+          <ol>
+            <li data-i18n="file.1"></li><li data-i18n="file.2"></li><li data-i18n="file.3"></li>
+          </ol>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="h4">
+    <h2 id="h4" data-i18n="step4.title"></h2>
+    <p id="prompt-empty" class="empty" role="status"></p>
+    <div id="prompt-ready" hidden>
+      <div class="actions">
+        <button type="button" id="copy" class="primary" data-i18n="prompt.copy"></button>
+        <span id="stats" class="stats"></span>
+      </div>
+      <p id="copy-status" class="status" role="status" aria-live="polite"></p>
+      <div id="fallback-wrap" hidden>
+        <label for="fallback" data-i18n="prompt.fallback"></label>
+        <textarea id="fallback" rows="8" readonly></textarea>
+      </div>
+      <h3 data-i18n="prompt.preview"></h3>
+      <p class="hint" data-i18n="prompt.preview.hint"></p>
+      <div id="preview" class="preview"></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h5">
+    <h2 id="h5" data-i18n="next.title"></h2>
+    <ol class="next">
+      <li data-i18n="next.1"></li><li data-i18n="next.2"></li><li data-i18n="next.3"></li><li data-i18n="next.4"></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><a id="feedback-link" href="https://github.com/tluhk/GameLab/issues/new/choose" target="_blank" rel="noopener noreferrer" data-i18n="nav.feedback"></a></p>
+    <p class="small" data-i18n="feedback.note"></p>
+    <p class="small" data-i18n="foot.privacy"></p>
+    <p class="small" data-i18n="foot.version"></p>
+  </div>
+</footer>
+
+<script src="data/prompts.js"></script>
+<script src="data/games.js"></script>
+<script src="i18n/en.js"></script>
+<script src="i18n/et.js"></script>
+<script src="js/prompt.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

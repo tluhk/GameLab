@@ -17,15 +17,26 @@ def load(lang):
         return json.load(f)
 
 
+NAMES = {"en": {"et": "Estonian", "en": "English"}, "et": {"et": "eesti keel", "en": "inglise keel"}}
+
+
+def lang_name(a):
+    g = a.game_language or a.lang
+    return NAMES[a.lang][g] if g in ("et", "en") else g
+
+
+def is_estonian(a):
+    g = a.game_language or a.lang
+    return g == "et" or g.strip().lower() in ("estonian", "eesti keel", "eesti")
+
+
 def build(a):
     t = load(a.lang)
     g = t["games"][a.game]
     levels = max(1, min(5, a.levels))
     steps = "; ".join("%d = %s" % (i + 1, t["ladder"][i]) for i in range(levels))
-    game_language = a.game_language or {"et": "Estonian" if a.lang == "en" else "eesti keel"}.get(a.lang, "English")
-    if not a.game_language:
-        game_language = "English" if a.lang == "en" else "eesti keel"
-    note = t["standard_lang_note"].get("et", "") if game_language.lower() in ("estonian", "eesti keel", "eesti") else ""
+    game_language = lang_name(a)
+    note = t["standard_lang_note"].get("et", "") if is_estonian(a) else ""
 
     out = []
 
@@ -88,7 +99,7 @@ def main():
     p.add_argument("--levels", type=int, default=3)
     p.add_argument("--items", type=int, default=8)
     p.add_argument("--difficulty", choices=["easy", "medium", "hard", "adaptive"], default="medium")
-    p.add_argument("--game-language", dest="game_language", default=None)
+    p.add_argument("--game-language", dest="game_language", default=None, help="et, en, or any language name (default: same as --lang)")
     p.add_argument("--no-mastery", dest="mastery", action="store_false")
     p.add_argument("--no-replay", dest="replay", action="store_false")
     p.add_argument("--feedback", choices=["short", "explain"], default="explain")
