@@ -32,7 +32,7 @@ flowchart TD
 What each screen does:
 
 1. **Topic.** One text box and a study-level choice.
-2. **Game type.** Cards with the name, a one-line description and what the game trains. Types that suit the chosen subject are marked as recommended.
+2. **Game type.** Cards with the name, a one-line description and what the game trains; the student ticks one, or up to three to mix them (F31). Types that suit the chosen subject are marked as recommended.
 3. **Options.** Five main choices, with the rest folded under "More options".
 4. **Prompt.** A readable preview with each block labelled, one Copy button, and a short guide to what happens next.
 5. and 6. **Play.** The student pastes the prompt into an AI chat, pastes the reply into the Safe Player, and plays. A menu of follow-up prompts covers repair, harder, easier, more items and fact-check.
@@ -98,6 +98,10 @@ Requirement numbers are stable identifiers, so they are not contiguous.
 - **F26** For longer material, the page shows steps for attaching a file in the AI chat, and the prompt then refers to the attached file.
 - **F27** A copyright and privacy notice appears whenever source mode is used: use only material you own, may share with AI tools, or that is openly licensed; no confidential material or personal data; follow your institution's rules. This is general guidance, not legal advice, and its wording needs review.
 
+- **F31** Mixing game types: the student can tick one to three of the six version 1 games and combine them in one game (one HTML file, shared progress and scoreboard). Two ways to combine: every level has a round of each game, or each level uses one game, taking turns. At most three, because one file with more games gets large and error-prone. Action-style games (platformer, escape puzzle) are not mixable.
+- **F32** The "More options" control is a large, clearly labelled button that lists what is inside (added after the owner missed it).
+- **F33** Every prompt tells the AI to create the finished game file itself (when its chat can create files or artifacts), never to give file or coding work to the student, and never to ask the student questions first. A code block is only the fallback.
+- **F34** Every prompt asks for a modern, polished look (header band, centred card, rounded corners, progress bar, start screen) with contrast kept first, using a fixed palette for each look.
 - **F30** Feedback and feature requests through GitHub issues. A "Feedback" link opens a prefilled new-issue page in the project's repository (in a new tab), using issue forms with Estonian and English wording. The page sends nothing by itself and shows a public-post warning first; the student needs a GitHub account to submit. See [decisions.md](decisions.md).
 
 ### Should (version 1.1 or 2)

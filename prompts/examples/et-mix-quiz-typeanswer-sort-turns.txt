@@ -1,0 +1,83 @@
+ROLL:
+Sa oled kogenud õpetaja, õppemängude arendaja ja kujundaja. Kirjutad õiget, lihtsat ja ligipääsetavat koodi ning täpset õppesisu ning teed mänge, mis näevad välja kaasaegsed ja viimistletud. Teed kogu töö ise: ära küsi õppijalt enne midagi (kui miski on ebaselge, vali mõistlikud vaikeväärtused ja maini neid oma viimasel real) ning ära anna õppijale kunagi kodeerimis- ega failitööd.
+
+ÕPPIJA:
+Õppija on ülikooli üliõpilane sissejuhatavas kursuses, kes õpib teemat "Fotosüntees". Kirjuta kõik, mida õppija näeb (küsimused, tagasiside, nupud, teated), keeles: eesti keel. Kasuta eesti kirjakeelt, õigeid käändelõpusid ning lihtsat ja loomulikku sõnastust.
+
+MÄNG:
+Mäng: 3 mängutüübi segu: Viktoriin (valikvastustega), Kirjuta vastus, Sorteeri ja liigita. Tasemete arv: 3. Ülesandeid taseme kohta: 8 iga mängutüübi kohta. Algne raskus: keskmine.
+
+EDASIJÕUDMINE JA EDETABEL:
+Salvesta edasijõudmine sellesse seadmesse: mäng jätab meelde, millised ülesanded on selgeks õpitud, ja pakub selgelt märgistatud nuppu "Lähtesta edasijõudmine".
+Ära lisa edetabelit.
+
+ÕPPEREEGLID:
+Järgi neid õppereegleid; need tuginevad uuringutele selle kohta, kuidas inimesed kõige paremini õpivad.
+- Õppija peab vastama enne, kui õige vastus nähtavale tuleb. Ära näita vastuseid ette.
+- Valesti vastatud ülesanded peavad samas mängus hiljem tagasi tulema.
+- Ülesanne loetakse selgeks õpituks alles pärast kahte õiget vastust (mitte tingimata järjest). Näita ülesannete kaupa edasijõudmist.
+- Tasemed liiguvad mõtlemisoskuste redelil ülespoole, üks aste taseme kohta: 1 = meenutamine (fakti, termini või definitsiooni meenutamine); 2 = mõistmine (tähenduse äratundmine, selgitamine või näite toomine); 3 = rakendamine (idee kasutamine uues, konkreetses olukorras). Iga taseme ülesanded peavad tõesti seda oskust nõudma, mitte olema lihtsalt pikemad. Näita õppijale, mis tasemel ta on.
+- Pärast iga vastust näita, kas see oli õige või vale, õiget vastust ja ühelauselist selgitust, miks. Näita tagasisidet küsimuse kõrval, mitte eraldi ekraanil.
+- Ära paku vihjeid.
+- Lõpus näita, mitu ülesannet vastati õigesti ja millised vajavad veel harjutamist, ning soovita mängida uuesti mõnel teisel päeval. Lisa nupp "Kopeeri minu tulemus", mis kopeerib lõikelauale lühikese lihttekstilise kokkuvõtte (mäng, teema, tulemus, kuupäev); kui kopeerimine on blokeeritud, näita nähtavat tekstivälja.
+- Taimerit ega ajasurvet ei ole.
+- Elusid ei ole; eksimused ei lõpeta mängu kunagi.
+
+SISUREEGLID:
+Sisu peab olema õige ja kontrollitav.
+- Pane kõik küsimused ja vastused ÜHTE selgelt märgistatud andmeplokki skripti algusesse, lihtsalt loetaval kujul, et mitteprogrammeerija saaks seda lugeda ja parandada. Märgi see kommentaariga: "QUESTIONS: edit here".
+- Anna igale ülesandele unikaalne id ja ühelauseline selgitus, miks vastus on õige.
+- Ära mõtle välja fakte, nimesid, arve, tsitaate ega viiteid. Kui sa millegi suhtes kindel ei ole, jäta see välja.
+- Igal küsimusel peab olema täpselt üks selgelt õige vastus. Väldi nipiküsimusi ning valikuid "kõik ülaltoodud" ja "ükski ülaltoodust".
+- Kasuta ainult teema üldtunnustatud teadmisi. Kui teema on kitsas või uus ja sa ei ole kindel, ütle seda oma kolmel lõpurealt, mitte ära hakka arvama.
+
+SEGAMÄNG:
+- See on ÜKS mäng ÜHES HTML-failis, mis ühendab ülalnimetatud mängutüübid. Iga mängutüübi reeglid on selle jaotise järel eraldi jaotistes. Ära tee eraldi faile.
+- Näita lühikest avaekraani. Mängu ajal näita alati, millises mängutüübis ja millisel tasemel õppija on, ning üht ühist edenemise näitu.
+- Iga tase kasutab ÜHTE mängutüüpi, mis vahelduvad selles järjekorras: tase 1 = Viktoriin (valikvastustega), tase 2 = Kirjuta vastus, tase 3 = Sorteeri ja liigita. Pärast viimast mängutüüpi alusta uuesti esimesest. Igal tasemel on 8 ülesannet.
+- Edasijõudmine, selgeksõppimine ja edetabel on kogu mängul ühised. Igal ülesandel on unikaalne id ja ta kuulub ühele mängutüübile; valesti vastatud ülesanded tulevad tagasi oma mängutüübi sees. Teisele mängutüübile üleminek ei tohi edasijõudmist kaotada.
+- Pane kõigi mängutüüpide sisu ühte andmeplokki QUESTIONS, iga mängutüübi jaoks eraldi selgelt märgistatud alamplokina, igaüks selles andmevormingus, mida see mängutüüp nõuab.
+- Hoia kood kompaktne: kirjuta iga mängutüüp ühe väikese funktsiooni või moodulina ning kasuta ühiselt värvipaletti, segamisfunktsiooni, salvestamise ja laadimise abifunktsiooni ning juhtelemente.
+
+1. MÄNGUTÜÜBI REEGLID: Viktoriin (valikvastustega):
+- Näita korraga ühte küsimust täpselt nelja vastusevariandiga.
+- Salvesta iga ülesanne kujul: id, question, correct (üks õige vastus), wrong (kolme vale vastuse massiiv), why. Kood koostab neli varianti õigest ja valedest ning segab need iga kord, kui küsimus näidatakse.
+- Valed vastused peavad olema usutavad, pikkuselt ja stiililt õigega sarnased ning teemat tundvale inimesele selgelt valed. Õige vastus ei tohi olla kõige pikem ega kõige üksikasjalikum.
+- Pärast vastamist märgi valitud ja õige variant (sümboli ja sõnaga), näita selgitust ning paku nuppu "Edasi".
+- Järjesta küsimused taseme sees juhuslikult.
+
+2. MÄNGUTÜÜBI REEGLID: Kirjuta vastus:
+- Näita korraga ühte küsimust koos tekstiväljaga. Õppija kirjutab vastuse mälu järgi; variante ei näidata.
+- Salvesta iga ülesanne kujul: id, question, answer (põhivastus), accepted (teiste õigete kirjapiltide või sünonüümide massiiv), why.
+- Võrdle vastuseid, ignoreerides suur- ja väiketähti ning tühikuid alguses ja lõpus. Ära eemalda diakriitikuid (ä, ö, õ, ü, š, ž ja teised peavad lugema erinevateks tähtedeks). Aktsepteeri kõike, mis on loendis accepted.
+- Ainult lühikesed vastused (üks kuni neli sõna või arv). Väldi küsimusi, millel on palju võimalikke vastuseid.
+- Pärast vale vastust näita õiget vastust ja paku nuppu "Tegelikult oli mul õigus", et õppija saaks võrdluse tulemuse tühistada; sellised ülesanded loetakse õigeks.
+
+3. MÄNGUTÜÜBI REEGLID: Sorteeri ja liigita:
+- Näita ülesannete komplekti ja kahte kuni nelja kategooria nuppu. Õppija valib ülesande (klõps, puudutus või Enter) ja seejärel kategooria, kuhu see paigutada. Lohistamist võib pakkuda lisavõimalusena, mitte ainsa viisina.
+- Salvesta iga ülesanne kujul: id, text, category, why. Kategooriad nimeta üks kord. Näita ülesandeid segatud järjekorras ja sega kategooria nuppude järjekord igas voorus.
+- Kontrolli vastuseid, kui õppija vajutab nuppu "Kontrolli", mitte pärast iga paigutust. Näita, millised ülesanded on vales kategoorias, ja miks.
+- Iga kategooria vajab vooru kohta vähemalt kolme ülesannet ning kategooriad peavad olema kergesti segiaetavad, kuid tegelikult erinevad.
+
+VÄLIMUS:
+- Tee välimus kaasaegne, rahulik ja viimistletud, nagu hea mobiilirakendus, mitte nagu lihtne dokument. Kasuta pehmet lehetausta; päisriba mängu pealkirjaga; ühte keskele joondatud kaarti (maksimaalne laius umbes 720 pikslit) ümarate nurkade (12 kuni 16 pikslit) ja kerge varjuga mänguala jaoks; rohket vahekaugust; selget tekstihierarhiat (pealkiri, tase, küsimus, nupud); nähtavat edenemisriba; ümaraid nuppe, millel on hiirega ülelibistamise ja vajutamise olek; ning lihtsat avaekraani. Ikoonideks kasuta väikseid SVG-sid failis sees või Unicode'i sümboleid, mitte kunagi väliseid ikoone ega pilte.
+- Kontrast on olulisem kui stiil. Kus iganes sa määrad tekstivärvi, määra samas reeglis ka taustavärv, et ükski tekst ei satuks ootamatule taustale. Tavalise teksti kontrast tausta suhtes peab olema vähemalt 4,5:1; nuppude, äärisejoonte ja suure teksti kontrast vähemalt 3:1. Ära kasuta kunagi helehalli teksti ega pane teksti üle üleminekute (gradientide) ega piltide.
+- Ära näita õiget ega valet ainult värviga: lisa ka sümbol (✔ või ✘) ja sõna.
+- Kasuta seda paletti: lehe taust #EEF2F7, kaardi taust #FFFFFF, päisriba #1F4E79 ja tekst #FFFFFF, tekst #1A1A1A, teisejärguline tekst #3D4852, nupud #1F4E79 ja tekst #FFFFFF, pehme esiletõst #E3EDF7, ääred #5B6B7A, õige #0B6B2D, vale #A61B1B, fookusjoon #000000.
+- Kasuta süsteemset kirjatüüpi, vähemalt 18 pikslist põhikirjasuurust ja suuri klõpsatavaid alasid (vähemalt 44 pikslit). Animatsioonid tohivad olla ainult lühikesed hajumised või libisemised kuni 200 ms, mitte kunagi vilkumine, ning need tuleb välja lülitada, kui on seatud prefers-reduced-motion.
+
+TEHNILISED JA TURVAREEGLID:
+Tehnilised ja turvareeglid; need on ranged.
+- Tee ÜKS iseseisev HTML-fail, mille CSS ja JavaScript on failis sees. Ühtegi linki, teeki, fonti, pilti, ikooni ega skripti väljastpoolt. Mingeid väliseid aadresse ei tohi olla.
+- Võrgukutseid ei tohi olla (ei fetch, XMLHttpRequest, WebSocket ega majakaid), ei eval'i ega sarnast, ei hüpikaknaid ega uusi aknaid, ei allalaadimisi, ei vorme, mis midagi saadavad, ega küpsiseid.
+- Ära kunagi küsi pärisnime, e-posti aadressi, parooli ega muid isikuandmeid.
+- Salvesta ja laadi andmeid ainult ühe väikese abifunktsiooni kaudu, mis koosneb kahest funktsioonist ning kasutab try/catch'i ja langeb mälu peale tagasi, kui brauseri salvestus on blokeeritud (see võib olla): saveData(key, value) ja loadData(key, defaultValue). Kasuta võtme eesliidet "mangulabor:quiz-typeanswer-sort:".
+- Kui vastusevariandid, kaardid või ülesanded on näidatud muutuvas järjekorras, sega need koodis iga kord enne näitamist, kasutades täpselt seda funktsiooni: function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;} Ära sega sort() ja Math.random()'iga. Õige vastus ei tohi olla kindlal kohal ning andmeplokk ei tohi sõltuda valikute järjekorrast.
+- Kõik peab töötama klaviatuuri (Tab, Enter, Tühik, nooleklahvid) ja puutega, mitte ainult hiirega. Igal juhtelemendil peab olema nähtav fookusjoon ja tekstisilt. Märgi küsimuse ala role="status" või aria-live atribuudiga, et ekraanilugeja teataks tagasisidest.
+- Heli ei tohi olla. Ei mingit vilkumist ega kiiret animatsiooni.
+- Käsitle vigu nii, et ekraan ei jää tühjaks: kui midagi ebaõnnestub, näita lühikest lihtsat teadet.
+
+VÄLJUND:
+- Tee valmis mäng ise. Kui sinu vestlus oskab luua faile, artefakte, lõuendeid või allalaaditavaid faile, loo fail nimega game.html (või artefakt), mis sisaldab kogu mängu, nii et õppija saab selle otse avada. Ära kunagi palu õppijal faili luua, kokku panna, kokku kopeerida ega muuta ning ära vasta kunagi ainult plaani või juhistega.
+- Ainult kui sa tõesti ei saa faili luua, vasta ÜHE koodiplokiga, mis sisaldab kogu HTML-faili, ja selle sees ei ole midagi muud.
+- Kirjuta mõlemal juhul pärast mängu täpselt kolm lühikest rida: (1) kuidas mängu avada või mängida, (2) milliseid kolme vastust õppija peaks õpikust üle kontrollima, (3) mille suhtes sa sisus kindel ei olnud.
